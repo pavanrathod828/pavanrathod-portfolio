@@ -59,12 +59,12 @@ export function HeroSection() {
           className="max-w-4xl"
         >
           <SectionBadge icon={Sparkles}>{siteData.hero.eyebrow}</SectionBadge>
-          <p className="mt-6 text-[13px] font-medium uppercase tracking-[0.12em] text-[#6b5638]">
+          <p className="mt-6 font-sans text-[12px] font-medium uppercase tracking-[0.18em] text-[#6b5638]">
             {siteData.role}
           </p>
           <h1
             id="home-heading"
-            className="mt-5 max-w-5xl font-serif text-[clamp(3.5rem,9vw,7.5rem)] font-normal italic leading-[1] tracking-[-0.01em] text-[#1c1a17]"
+            className="mt-3 max-w-5xl font-serif text-[clamp(3.5rem,9vw,7.5rem)] font-normal italic leading-[1] tracking-[-0.01em] text-[#1c1a17]"
           >
             {siteData.hero.headline}
           </h1>
