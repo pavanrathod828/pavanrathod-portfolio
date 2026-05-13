@@ -11,7 +11,11 @@ export function AboutSection() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="about" className="relative px-5 py-24 sm:px-8 lg:px-10">
+    <section
+      id="about"
+      aria-labelledby="about-heading"
+      className="relative px-5 py-24 sm:px-8 lg:px-10"
+    >
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.76fr_1fr] lg:gap-16">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
@@ -20,7 +24,10 @@ export function AboutSection() {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <SectionBadge>About Preview</SectionBadge>
-          <h2 className="mt-5 text-3xl font-semibold leading-tight text-white sm:text-5xl">
+          <h2
+            id="about-heading"
+            className="mt-5 text-3xl font-semibold leading-tight text-white sm:text-5xl"
+          >
             A portfolio shell for verified work, polished interaction, and responsible AI use.
           </h2>
         </motion.div>

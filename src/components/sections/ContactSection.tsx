@@ -16,7 +16,11 @@ export function ContactSection() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="contact" className="px-5 py-24 sm:px-8 lg:px-10">
+    <section
+      id="contact"
+      aria-labelledby="contact-heading"
+      className="px-5 py-24 sm:px-8 lg:px-10"
+    >
       <motion.div
         initial={reduceMotion ? false : { opacity: 0, y: 24 }}
         whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -31,7 +35,10 @@ export function ContactSection() {
         <div className="relative grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-end">
           <div>
             <SectionBadge icon={Send}>Contact</SectionBadge>
-            <h2 className="mt-5 max-w-3xl text-3xl font-semibold leading-tight text-white sm:text-5xl">
+            <h2
+              id="contact-heading"
+              className="mt-5 max-w-3xl text-3xl font-semibold leading-tight text-white sm:text-5xl"
+            >
               {siteData.contactCta.heading}
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300">

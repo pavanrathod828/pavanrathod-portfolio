@@ -11,7 +11,11 @@ export function ProcessSection() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="process" className="px-5 py-24 sm:px-8 lg:px-10">
+    <section
+      id="process"
+      aria-labelledby="process-heading"
+      className="px-5 py-24 sm:px-8 lg:px-10"
+    >
       <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 shadow-2xl shadow-black/25 sm:p-8 lg:p-10">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
@@ -22,7 +26,10 @@ export function ProcessSection() {
         >
           <div>
             <SectionBadge>AI Workflow</SectionBadge>
-            <h2 className="mt-5 text-3xl font-semibold leading-tight text-white sm:text-5xl">
+            <h2
+              id="process-heading"
+              className="mt-5 text-3xl font-semibold leading-tight text-white sm:text-5xl"
+            >
               Responsible AI-assisted development, with human review in the loop.
             </h2>
           </div>

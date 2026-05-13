@@ -9,7 +9,11 @@ export function SkillsSection() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="skills" className="px-5 py-24 sm:px-8 lg:px-10">
+    <section
+      id="skills"
+      aria-labelledby="skills-heading"
+      className="px-5 py-24 sm:px-8 lg:px-10"
+    >
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
@@ -20,7 +24,10 @@ export function SkillsSection() {
         >
           <div className="max-w-3xl">
             <SectionBadge icon={Wrench}>Skills</SectionBadge>
-            <h2 className="mt-5 text-3xl font-semibold leading-tight text-white sm:text-5xl">
+            <h2
+              id="skills-heading"
+              className="mt-5 text-3xl font-semibold leading-tight text-white sm:text-5xl"
+            >
               Clean groups now, verified evidence later.
             </h2>
           </div>

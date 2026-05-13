@@ -18,6 +18,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
+      aria-labelledby="home-heading"
       className="relative isolate flex min-h-[92svh] items-center overflow-hidden px-5 py-28 sm:px-8 lg:px-10"
     >
       <div
@@ -72,7 +73,10 @@ export function HeroSection() {
           <p className="mt-6 text-sm font-medium uppercase tracking-[0.28em] text-slate-400">
             {siteData.role}
           </p>
-          <h1 className="mt-5 max-w-5xl text-5xl font-semibold leading-[0.95] text-white sm:text-6xl lg:text-8xl">
+          <h1
+            id="home-heading"
+            className="mt-5 max-w-5xl text-5xl font-semibold leading-[0.95] text-white sm:text-6xl lg:text-8xl"
+          >
             {siteData.hero.headline}
           </h1>
           <p className="mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">

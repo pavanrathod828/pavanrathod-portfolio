@@ -37,7 +37,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <main>
+      <main id="main">
         <HeroSection />
         <AboutSection />
         <ProjectsSection />

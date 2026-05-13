@@ -10,7 +10,11 @@ export function ProjectsSection() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="projects" className="px-5 py-24 sm:px-8 lg:px-10">
+    <section
+      id="projects"
+      aria-labelledby="projects-heading"
+      className="px-5 py-24 sm:px-8 lg:px-10"
+    >
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
@@ -20,7 +24,10 @@ export function ProjectsSection() {
           className="max-w-3xl"
         >
           <SectionBadge>Featured Projects</SectionBadge>
-          <h2 className="mt-5 text-3xl font-semibold leading-tight text-white sm:text-5xl">
+          <h2
+            id="projects-heading"
+            className="mt-5 text-3xl font-semibold leading-tight text-white sm:text-5xl"
+          >
             Project cards are ready for real proof, links, and media.
           </h2>
           <p className="mt-5 text-base leading-8 text-slate-300">
