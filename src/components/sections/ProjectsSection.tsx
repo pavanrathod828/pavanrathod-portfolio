@@ -15,19 +15,19 @@ const statusMeta: Record<
 > = {
   in_progress: {
     label: "In progress",
-    className: "border-cyan-300/30 bg-cyan-300/10 text-cyan-100",
+    className: "border-[#d9cfb5] bg-[#ebe4d3] text-[#6b5638]",
   },
   concept: {
     label: "Concept",
-    className: "border-violet-300/30 bg-violet-300/10 text-violet-100",
+    className: "border-[#d9cfb5] bg-[#faf7f0] text-[#8a8278]",
   },
   live: {
     label: "Live",
-    className: "border-emerald-300/30 bg-emerald-300/10 text-emerald-100",
+    className: "border-[#1c1a17] bg-[#1c1a17] text-[#faf7f0]",
   },
   archived: {
     label: "Archived",
-    className: "border-slate-300/20 bg-slate-300/10 text-slate-200",
+    className: "border-[#d9cfb5] bg-[#ebe4d3] text-[#8a8278]",
   },
 };
 
@@ -78,16 +78,12 @@ export function ProjectsSection() {
                 <Card
                   as="article"
                   hoverLift
-                  className="group relative h-full overflow-hidden shadow-2xl"
+                  className="relative h-full"
                 >
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-cyan-300/10 to-transparent opacity-0 transition duration-300 group-hover:opacity-100"
-                  />
                   <div className="relative flex h-full flex-col">
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="rounded-full border border-amber-200/20 bg-amber-200/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-amber-100">
+                        <span className="rounded-full border border-[#d9cfb5] bg-[#ebe4d3] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#6b5638]">
                           Placeholder
                         </span>
                         {status ? (
@@ -101,13 +97,13 @@ export function ProjectsSection() {
                           </span>
                         ) : null}
                       </div>
-                      <ShieldAlert aria-hidden="true" className="size-5 text-slate-500" />
+                      <ShieldAlert aria-hidden="true" className="size-5 text-[#8a8278]" />
                     </div>
 
                     <div className="mt-8">
-                      <h3 className="text-xl font-semibold text-white">{project.title}</h3>
-                      <p className="mt-4 text-sm leading-7 text-slate-300">{project.summary}</p>
-                      <p className="mt-4 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
+                      <h3 className="text-xl font-semibold text-[#1c1a17]">{project.title}</h3>
+                      <p className="mt-4 text-sm leading-7 text-[#1c1a17]">{project.summary}</p>
+                      <p className="mt-4 text-xs font-medium uppercase tracking-[0.18em] text-[#8a8278]">
                         {project.statusNote}
                       </p>
                     </div>
@@ -118,9 +114,9 @@ export function ProjectsSection() {
                         return (
                           <span
                             key={item}
-                            className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-slate-950/50 px-3 py-1 text-xs text-slate-300"
+                            className="inline-flex items-center gap-1.5 rounded-full bg-[#ebe4d3] px-3 py-1 text-xs text-[#5a544c] transition hover:bg-[#d9cfb5] motion-reduce:transition-none"
                           >
-                            <Icon aria-hidden="true" className="size-3.5 text-slate-400" />
+                            <Icon aria-hidden="true" className="size-3.5 text-[#6b5638]" />
                             {item}
                           </span>
                         );

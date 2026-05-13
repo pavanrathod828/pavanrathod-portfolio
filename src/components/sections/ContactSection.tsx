@@ -3,9 +3,8 @@
 import { GitBranch, Link as LinkIcon, Mail, Send } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { siteData } from "@/data/site";
-import { ButtonLink } from "@/components/ui/ButtonLink";
-import { SectionBadge } from "@/components/ui/SectionBadge";
 import { Container } from "@/components/layout/Container";
+import { cn } from "@/lib/utils";
 
 const socialIcons = {
   Email: Mail,
@@ -28,25 +27,24 @@ export function ContactSection() {
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.65, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-[2rem] border border-cyan-300/20 bg-cyan-300/10 p-6 shadow-[0_0_80px_rgba(34,211,238,0.08)] sm:p-10 lg:p-14"
+          className="relative overflow-hidden rounded-[2rem] bg-[#1c1a17] p-6 text-[#faf7f0] shadow-[0_30px_80px_-30px_rgba(28,26,23,0.35)] sm:p-10 lg:p-14"
         >
-          <div
-            aria-hidden="true"
-            className="absolute right-[-8rem] top-[-8rem] h-72 w-72 rounded-full bg-cyan-300/20 blur-3xl"
-          />
           <div className="relative grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-end">
             <div>
-              <SectionBadge icon={Send}>Contact</SectionBadge>
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#d9cfb5]/20 bg-[#faf7f0]/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-[#d9cfb5]">
+                <Send aria-hidden="true" className="size-3.5" />
+                Contact
+              </div>
               <h2
                 id="contact-heading"
-                className="mt-5 max-w-3xl text-3xl font-semibold leading-tight text-white sm:text-5xl"
+                className="mt-5 max-w-3xl font-serif text-[clamp(2.25rem,5vw,4rem)] font-normal italic leading-[1.05] tracking-[-0.015em] text-[#faf7f0]"
               >
                 {siteData.contactCta.heading}
               </h2>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300">
+              <p className="mt-5 max-w-2xl text-base leading-8 text-[#d9cfb5]">
                 {siteData.contactCta.body}
               </p>
-              <p className="mt-4 text-sm leading-7 text-slate-400">
+              <p className="mt-4 text-sm leading-7 text-[#8a8278]">
                 {siteData.email.startsWith("PLACEHOLDER")
                   ? "Email available on request — see links below."
                   : siteData.email}
@@ -58,16 +56,16 @@ export function ContactSection() {
                 const Icon = socialIcons[link.label as keyof typeof socialIcons] ?? Mail;
 
                 return (
-                  <ButtonLink
+                  <a
                     key={link.label}
                     href={link.href}
-                    icon={Icon}
-                    iconPosition="left"
-                    variant="secondary"
-                    className="w-full justify-start"
+                    className={cn(
+                      "group inline-flex min-h-12 w-full items-center justify-start gap-2 rounded-full border border-[#faf7f0]/15 bg-[#faf7f0] px-5 py-3 text-sm font-semibold text-[#1c1a17] transition duration-300 hover:bg-[#ebe4d3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#faf7f0] motion-reduce:transition-none",
+                    )}
                   >
-                    {link.label}
-                  </ButtonLink>
+                    <Icon aria-hidden="true" className="size-4 shrink-0" />
+                    <span>{link.label}</span>
+                  </a>
                 );
               })}
             </div>

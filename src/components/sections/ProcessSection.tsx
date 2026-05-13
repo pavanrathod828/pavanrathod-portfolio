@@ -11,14 +11,8 @@ import { cn } from "@/lib/utils";
 const stepIcons = [ClipboardList, Hammer, TestTube, Rocket];
 
 const accents = [
-  {
-    badge: "border-cyan-300/20 bg-cyan-300/10 text-cyan-100",
-    glow: "shadow-[0_0_24px_rgba(34,211,238,0.12)]",
-  },
-  {
-    badge: "border-violet-300/25 bg-violet-300/10 text-violet-100",
-    glow: "shadow-[0_0_24px_rgba(167,139,250,0.12)]",
-  },
+  "bg-[#ebe4d3] text-[#6b5638]",
+  "bg-[#ebe4d3] text-[#c4985a]",
 ];
 
 export function ProcessSection() {
@@ -31,7 +25,7 @@ export function ProcessSection() {
       className="scroll-mt-24 py-24"
     >
       <Container>
-        <Card className="rounded-[2rem] p-5 shadow-2xl shadow-black/25 sm:p-8 lg:p-10">
+        <div className="rounded-[2rem] bg-[#ebe4d3] p-5 sm:p-8 lg:p-10">
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: 18 }}
             whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -43,12 +37,12 @@ export function ProcessSection() {
               <SectionBadge>AI Workflow</SectionBadge>
               <h2
                 id="process-heading"
-                className="mt-5 text-3xl font-semibold leading-tight text-white sm:text-5xl"
+                className="mt-5 font-serif text-[clamp(2.25rem,5vw,4rem)] font-normal leading-[1.05] tracking-[-0.015em] text-[#1c1a17]"
               >
                 Responsible AI-assisted development, with human review in the loop.
               </h2>
             </div>
-            <div className="space-y-5 text-base leading-8 text-slate-300">
+            <div className="space-y-5 text-base leading-8 text-[#1c1a17]">
               {siteData.processIntro.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -58,7 +52,7 @@ export function ProcessSection() {
           <div className="relative mt-12">
             <div
               aria-hidden="true"
-              className="absolute left-[12.5%] right-[12.5%] top-[2.75rem] hidden border-t border-dashed border-white/10 md:block"
+              className="absolute left-[12.5%] right-[12.5%] top-[2.75rem] hidden border-t border-dashed border-[#d9cfb5] opacity-60 md:block"
             />
             <div className="relative grid gap-4 md:grid-cols-4">
               {siteData.processSteps.map((step, index) => {
@@ -73,28 +67,27 @@ export function ProcessSection() {
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.05 }}
                   >
-                    <Card className="relative h-full overflow-hidden rounded-3xl bg-slate-950/60">
+                    <Card className="relative h-full rounded-3xl">
                       <div
                         className={cn(
-                          "flex size-11 items-center justify-center rounded-2xl border",
-                          accent.badge,
-                          accent.glow,
+                          "flex size-11 items-center justify-center rounded-2xl",
+                          accent,
                         )}
                       >
                         <Icon aria-hidden="true" className="size-5" />
                       </div>
-                      <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+                      <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8a8278]">
                         Step {index + 1}
                       </p>
-                      <h3 className="mt-2 text-lg font-semibold text-white">{step.title}</h3>
-                      <p className="mt-3 text-sm leading-6 text-slate-400">{step.description}</p>
+                      <h3 className="mt-2 text-lg font-semibold text-[#1c1a17]">{step.title}</h3>
+                      <p className="mt-3 text-sm leading-6 text-[#5a544c]">{step.description}</p>
                     </Card>
                   </motion.div>
                 );
               })}
             </div>
           </div>
-        </Card>
+        </div>
       </Container>
     </section>
   );

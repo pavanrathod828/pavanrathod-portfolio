@@ -37,12 +37,12 @@ export function SkillsSection() {
             <SectionBadge icon={Wrench}>Skills</SectionBadge>
             <h2
               id="skills-heading"
-              className="mt-5 text-3xl font-semibold leading-tight text-white sm:text-5xl"
+              className="mt-5 font-serif text-[clamp(2.25rem,5vw,4rem)] font-normal leading-[1.05] tracking-[-0.015em] text-[#1c1a17]"
             >
               Clean groups now, verified evidence later.
             </h2>
           </div>
-          <p className="max-w-md text-sm leading-7 text-slate-400">
+          <p className="max-w-md text-sm leading-7 text-[#5a544c]">
             Skill labels remain placeholder-marked until backed by resume, GitHub, coursework, or
             project evidence.
           </p>
@@ -61,10 +61,10 @@ export function SkillsSection() {
               >
                 <Card className="h-full">
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex size-8 items-center justify-center rounded-xl border border-cyan-300/20 bg-cyan-300/10 text-cyan-100">
+                    <span className="inline-flex size-8 items-center justify-center rounded-xl bg-[#ebe4d3] text-[#6b5638]">
                       <Icon aria-hidden="true" className="size-4" />
                     </span>
-                    <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-100">
+                    <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[#6b5638]">
                       {group.category}
                     </h3>
                   </div>
@@ -72,7 +72,7 @@ export function SkillsSection() {
                     {group.items.map((skill) => (
                       <span
                         key={skill}
-                        className="rounded-full border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 transition hover:border-white/20 hover:bg-slate-900/70 motion-reduce:transition-none"
+                        className="rounded-full bg-[#ebe4d3] px-3 py-2 text-sm text-[#5a544c] transition hover:bg-[#d9cfb5] motion-reduce:transition-none"
                       >
                         {skill}
                       </span>
