@@ -58,8 +58,8 @@ export function ProjectsSection() {
           <SectionHeader
             badge="Featured Projects"
             headingId="projects-heading"
-            title="Project cards are ready for real proof, links, and media."
-            description="These cards intentionally use placeholder-safe project entries from the shared data file. They should be replaced only after real GitHub links, demos, screenshots, and project details are confirmed."
+            title="Selected projects across product work, AI workflows, and personal builds."
+            description="A small set of placeholder cards while real project case studies are being prepared."
           />
         </motion.div>
 

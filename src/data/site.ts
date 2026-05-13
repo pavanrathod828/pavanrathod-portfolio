@@ -95,7 +95,7 @@ export const siteData = {
   },
   projects: [
     {
-      title: "PLACEHOLDER - pavanrathod.com",
+      title: "pavanrathod.com",
       slug: "pavanrathod-com",
       summary:
         "Placeholder entry for this portfolio site as a case study once design, implementation, and deployment details are verified.",
@@ -107,7 +107,7 @@ export const siteData = {
       isPlaceholder: true,
     },
     {
-      title: "PLACEHOLDER - Featured project 1",
+      title: "Featured project 1",
       slug: "featured-project-1",
       summary:
         "Placeholder for a verified project summary from resume, GitHub, LinkedIn, or project notes.",
@@ -119,7 +119,7 @@ export const siteData = {
       isPlaceholder: true,
     },
     {
-      title: "PLACEHOLDER - Featured project 2",
+      title: "Featured project 2",
       slug: "featured-project-2",
       summary:
         "Placeholder for another strong project with verified scope, links, screenshots, and outcomes.",
@@ -176,8 +176,8 @@ export const siteData = {
     },
   ],
   contactCta: {
-    heading: "PLACEHOLDER - Ready for verified contact details.",
-    body: "PLACEHOLDER-SAFE - LinkedIn, GitHub, and email links are wired for the portfolio layout, but should be replaced with verified public links before launch.",
+    heading: "Open to internships, freelance, and short collaborations.",
+    body: "Reach out by email or social — verified contact details will replace placeholders before launch.",
   },
   socialLinks: [
     {

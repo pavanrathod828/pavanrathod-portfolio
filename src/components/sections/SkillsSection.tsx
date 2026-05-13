@@ -39,12 +39,11 @@ export function SkillsSection() {
               id="skills-heading"
               className="mt-5 font-serif text-[clamp(2.25rem,5vw,4rem)] font-normal leading-[1.05] tracking-[-0.015em] text-[#1c1a17]"
             >
-              Clean groups now, verified evidence later.
+              A working stack across frontend, languages, AI tools, and deployment.
             </h2>
           </div>
           <p className="max-w-md text-sm leading-7 text-[#5a544c]">
-            Skill labels remain placeholder-marked until backed by resume, GitHub, coursework, or
-            project evidence.
+            Tools, frameworks, and languages I work with — depth varies by area.
           </p>
         </motion.div>
 
