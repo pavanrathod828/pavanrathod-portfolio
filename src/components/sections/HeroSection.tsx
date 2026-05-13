@@ -115,27 +115,45 @@ export function HeroSection() {
                 <span className="size-3 rounded-full bg-amber-300/80" />
                 <span className="size-3 rounded-full bg-emerald-400/80" />
                 <span className="ml-3 font-mono text-[12px] text-[#8a8278]">
-                  portfolio-mvp.tsx
+                  pavan.config.ts
                 </span>
               </div>
               <div className="space-y-4 py-5 font-mono text-[13px] leading-6 text-[#e8e0d0]">
                 <p>
                   <span className="text-[#b8a989]">const</span>{" "}
-                  <span className="text-[#e8e0d0]">contentMode</span>{" "}
+                  <span className="text-[#e8e0d0]">role</span>{" "}
                   <span className="text-[#8a8278]">=</span>{" "}
-                  <span className="text-[#c4985a]">&quot;placeholder-safe&quot;</span>;
+                  <span className="text-[#c4985a]">
+                    &quot;Software Engineering Intern&quot;
+                  </span>
+                  ;
                 </p>
                 <p>
                   <span className="text-[#b8a989]">const</span>{" "}
-                  <span className="text-[#e8e0d0]">workflow</span>{" "}
+                  <span className="text-[#e8e0d0]">stack</span>{" "}
                   <span className="text-[#8a8278]">=</span> [
-                  <span className="text-[#c4985a]">&quot;plan&quot;</span>,{" "}
-                  <span className="text-[#c4985a]">&quot;build&quot;</span>,{" "}
-                  <span className="text-[#c4985a]">&quot;test&quot;</span>,{" "}
-                  <span className="text-[#c4985a]">&quot;deploy&quot;</span>];
+                  <span className="text-[#c4985a]">&quot;Next.js&quot;</span>,{" "}
+                  <span className="text-[#c4985a]">&quot;TypeScript&quot;</span>,{" "}
+                  <span className="text-[#c4985a]">&quot;Python&quot;</span>,{" "}
+                  <span className="text-[#c4985a]">&quot;AWS&quot;</span>];
                 </p>
-                <p className="text-[#8a8278]">
-                  {"// Verified project details will replace placeholders after review."}
+                <p>
+                  <span className="text-[#b8a989]">const</span>{" "}
+                  <span className="text-[#e8e0d0]">status</span>{" "}
+                  <span className="text-[#8a8278]">=</span>{" "}
+                  <span className="text-[#c4985a]">
+                    &quot;Open for Summer 2026 &amp; 2027&quot;
+                  </span>
+                  ;
+                </p>
+                <p>
+                  <span className="text-[#b8a989]">const</span>{" "}
+                  <span className="text-[#e8e0d0]">building</span>{" "}
+                  <span className="text-[#8a8278]">=</span>{" "}
+                  <span className="text-[#c4985a]">
+                    &quot;skyways-hotel-booking&quot;
+                  </span>
+                  ;
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -149,7 +167,9 @@ export function HeroSection() {
                   <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#8a8278]">
                     Location
                   </p>
-                  <p className="mt-2 text-sm font-semibold text-[#e8e0d0]">{siteData.location}</p>
+                  <p className="mt-2 text-sm font-semibold text-[#e8e0d0]">
+                    Los Angeles · Torrance, CA
+                  </p>
                 </div>
                 <div
                   className="rounded-xl border p-4"
@@ -162,7 +182,7 @@ export function HeroSection() {
                     Status
                   </p>
                   <p className="mt-2 text-sm font-semibold text-[#e8e0d0]">
-                    Portfolio in progress
+                    Open to internships
                   </p>
                 </div>
               </div>
