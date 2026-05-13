@@ -23,8 +23,8 @@ Notes for Claude Code working on this repo. Read `AGENTS.md` first for the non-n
 
 ## Dependencies
 
-- Allowed: `motion`, `lucide-react`, `clsx`, `tailwind-merge`, Tailwind v4, Next.js, React 19, TypeScript.
-- **Forbidden without explicit approval:** `three`, `gsap`, `lenis`, `framer-motion` (we use `motion`), `next-themes`. If you think you need a new dep, stop and ask.
+- Allowed: `motion`, `lucide-react`, `clsx`, `tailwind-merge`, `gsap` (approved — used for hero pin and parallax scrubs only, per PLAN.md Phase 2), Tailwind v4, Next.js, React 19, TypeScript.
+- **Forbidden without explicit approval:** `three`, `lenis`, `framer-motion` (we use `motion`), `next-themes`. If you think you need a new dep, stop and ask.
 
 ## TypeScript
 
@@ -44,23 +44,7 @@ Notes for Claude Code working on this repo. Read `AGENTS.md` first for the non-n
 
 ## Design tokens
 
-The site is **warm light mode** (bone palette). The full token set lives in `src/app/globals.css` under `:root`. Reference values:
-
-| Token                  | Hex       | Use                                            |
-| ---------------------- | --------- | ---------------------------------------------- |
-| `--bg-base`            | `#faf7f0` | Body background                                |
-| `--bg-soft`            | `#ebe4d3` | Recessed panels, badges, chip bg, footer       |
-| `--border-soft`        | `#d9cfb5` | Default card / chip borders                    |
-| `--border-strong`      | `#b8a989` | Hover borders, code keyword in dark window     |
-| `--text-primary`       | `#1c1a17` | Primary text, headings, primary button bg      |
-| `--text-muted`         | `#5a544c` | Secondary text (AA-compliant for small text)   |
-| `--text-faint`         | `#8a8278` | Decorative icons / large-text only             |
-| `--accent-bronze`      | `#6b5638` | Eyebrows, badges, default icon color           |
-| `--accent-bronze-deep` | `#4a3a26` | Hover state for bronze                         |
-| `--accent-amber`       | `#c4985a` | Code string accent, alternating step icons     |
-| `--code-bg`            | `#1a1815` | Hero code window background (kept dark)        |
-| `--code-fg`            | `#e8e0d0` | Code window text                               |
-| `--code-border`        | `#2a2620` | Code window borders                            |
+Dark palette defined in docs/design-tokens.md (Phase 1, locked May 13). This file supersedes the old warm palette for the redesign-scrollytelling branch.
 
 ### Typography
 
