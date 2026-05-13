@@ -4,6 +4,8 @@ import { Wrench } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { siteData } from "@/data/site";
 import { SectionBadge } from "@/components/ui/SectionBadge";
+import { Card } from "@/components/ui/Card";
+import { Container } from "@/components/layout/Container";
 
 export function SkillsSection() {
   const reduceMotion = useReducedMotion();
@@ -12,9 +14,9 @@ export function SkillsSection() {
     <section
       id="skills"
       aria-labelledby="skills-heading"
-      className="px-5 py-24 sm:px-8 lg:px-10"
+      className="py-24"
     >
-      <div className="mx-auto max-w-7xl">
+      <Container>
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -45,25 +47,26 @@ export function SkillsSection() {
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.55, ease: "easeOut", delay: index * 0.05 }}
-              className="rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-5 shadow-xl shadow-black/20"
             >
-              <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-100">
-                {group.category}
-              </h3>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {group.items.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-full border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-slate-200"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
+              <Card className="h-full">
+                <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-100">
+                  {group.category}
+                </h3>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {group.items.map((skill) => (
+                    <span
+                      key={skill}
+                      className="rounded-full border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-slate-200"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </Card>
             </motion.div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

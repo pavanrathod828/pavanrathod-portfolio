@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { siteData } from "@/data/site";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { SectionBadge } from "@/components/ui/SectionBadge";
+import { Container } from "@/components/layout/Container";
 
 const socialIcons = {
   Email: Mail,
@@ -19,7 +20,7 @@ export function HeroSection() {
     <section
       id="home"
       aria-labelledby="home-heading"
-      className="relative isolate flex min-h-[92svh] items-center overflow-hidden px-5 py-28 sm:px-8 lg:px-10"
+      className="relative isolate flex min-h-[92svh] items-center overflow-hidden py-28"
     >
       <div
         aria-hidden="true"
@@ -62,7 +63,7 @@ export function HeroSection() {
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.04fr_0.72fr]">
+      <Container className="grid items-center gap-12 lg:grid-cols-[1.04fr_0.72fr]">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 24 }}
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -171,7 +172,7 @@ export function HeroSection() {
             </div>
           </div>
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }
