@@ -76,7 +76,7 @@ export function ProcessSection() {
                       >
                         <Icon aria-hidden="true" className="size-5" />
                       </div>
-                      <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8a8278]">
+                      <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5a544c]">
                         Step {index + 1}
                       </p>
                       <h3 className="mt-2 text-lg font-semibold text-[#1c1a17]">{step.title}</h3>

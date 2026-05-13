@@ -19,7 +19,7 @@ const statusMeta: Record<
   },
   concept: {
     label: "Concept",
-    className: "border-[#d9cfb5] bg-[#faf7f0] text-[#8a8278]",
+    className: "border-[#d9cfb5] bg-[#faf7f0] text-[#5a544c]",
   },
   live: {
     label: "Live",
@@ -27,7 +27,7 @@ const statusMeta: Record<
   },
   archived: {
     label: "Archived",
-    className: "border-[#d9cfb5] bg-[#ebe4d3] text-[#8a8278]",
+    className: "border-[#d9cfb5] bg-[#ebe4d3] text-[#5a544c]",
   },
 };
 
@@ -103,7 +103,7 @@ export function ProjectsSection() {
                     <div className="mt-8">
                       <h3 className="text-xl font-semibold text-[#1c1a17]">{project.title}</h3>
                       <p className="mt-4 text-sm leading-7 text-[#1c1a17]">{project.summary}</p>
-                      <p className="mt-4 text-xs font-medium uppercase tracking-[0.18em] text-[#8a8278]">
+                      <p className="mt-4 text-xs font-medium uppercase tracking-[0.18em] text-[#5a544c]">
                         {project.statusNote}
                       </p>
                     </div>
