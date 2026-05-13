@@ -16,7 +16,7 @@ export function AboutSection() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="relative py-24"
+      className="relative scroll-mt-24 py-24"
     >
       <Container className="grid gap-10 lg:grid-cols-[0.76fr_1fr] lg:gap-16">
         <motion.div

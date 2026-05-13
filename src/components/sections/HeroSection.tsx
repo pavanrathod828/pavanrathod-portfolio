@@ -1,6 +1,13 @@
 "use client";
 
-import { ArrowDown, FileText, GitBranch, Link, Mail, Sparkles } from "lucide-react";
+import {
+  ArrowDown,
+  FileText,
+  GitBranch,
+  Link as LinkIcon,
+  Mail,
+  Sparkles,
+} from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { siteData } from "@/data/site";
 import { ButtonLink } from "@/components/ui/ButtonLink";
@@ -10,7 +17,7 @@ import { Container } from "@/components/layout/Container";
 const socialIcons = {
   Email: Mail,
   GitHub: GitBranch,
-  LinkedIn: Link,
+  LinkedIn: LinkIcon,
 };
 
 export function HeroSection() {
@@ -20,7 +27,7 @@ export function HeroSection() {
     <section
       id="home"
       aria-labelledby="home-heading"
-      className="relative isolate flex min-h-[92svh] items-center overflow-hidden py-28"
+      className="relative isolate flex min-h-[92svh] scroll-mt-24 items-center overflow-hidden py-28"
     >
       <div
         aria-hidden="true"
@@ -117,6 +124,7 @@ export function HeroSection() {
         </motion.div>
 
         <motion.div
+          aria-hidden="true"
           initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.98 }}
           animate={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}

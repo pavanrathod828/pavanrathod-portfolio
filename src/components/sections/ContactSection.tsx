@@ -1,6 +1,6 @@
 "use client";
 
-import { GitBranch, Link, Mail, Send } from "lucide-react";
+import { GitBranch, Link as LinkIcon, Mail, Send } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { siteData } from "@/data/site";
 import { ButtonLink } from "@/components/ui/ButtonLink";
@@ -10,7 +10,7 @@ import { Container } from "@/components/layout/Container";
 const socialIcons = {
   Email: Mail,
   GitHub: GitBranch,
-  LinkedIn: Link,
+  LinkedIn: LinkIcon,
 };
 
 export function ContactSection() {
@@ -20,7 +20,7 @@ export function ContactSection() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="py-24"
+      className="scroll-mt-24 py-24"
     >
       <Container>
         <motion.div
@@ -46,7 +46,11 @@ export function ContactSection() {
               <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300">
                 {siteData.contactCta.body}
               </p>
-              <p className="mt-4 text-sm leading-7 text-slate-400">{siteData.email}</p>
+              <p className="mt-4 text-sm leading-7 text-slate-400">
+                {siteData.email.startsWith("PLACEHOLDER")
+                  ? "Email available on request — see links below."
+                  : siteData.email}
+              </p>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">

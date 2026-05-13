@@ -3,11 +3,14 @@ export type NavItem = {
   href: string;
 };
 
+export type ProjectStatus = "in_progress" | "concept" | "live" | "archived";
+
 export type Project = {
   title: string;
   slug: string;
   summary: string;
-  status: string;
+  status?: ProjectStatus;
+  statusNote: string;
   stack: string[];
   liveUrl?: string;
   githubUrl?: string;
@@ -79,7 +82,8 @@ export const siteData = {
       slug: "pavanrathod-com",
       summary:
         "Placeholder entry for this portfolio site as a case study once design, implementation, and deployment details are verified.",
-      status: "Placeholder until the portfolio build has shipped.",
+      status: "in_progress",
+      statusNote: "Placeholder until the portfolio build has shipped.",
       stack: ["Next.js", "TypeScript", "Tailwind CSS"],
       liveUrl: "https://pavanrathod.com",
       githubUrl: "https://github.com/replace-with-verified-username/pavanrathod.com",
@@ -90,7 +94,8 @@ export const siteData = {
       slug: "featured-project-1",
       summary:
         "Placeholder for a verified project summary from resume, GitHub, LinkedIn, or project notes.",
-      status: "Needs confirmation from real project data.",
+      status: "concept",
+      statusNote: "Needs confirmation from real project data.",
       stack: ["React", "TypeScript", "Tailwind CSS"],
       liveUrl: undefined,
       githubUrl: undefined,
@@ -101,7 +106,8 @@ export const siteData = {
       slug: "featured-project-2",
       summary:
         "Placeholder for another strong project with verified scope, links, screenshots, and outcomes.",
-      status: "Needs confirmation from real project data.",
+      status: "concept",
+      statusNote: "Needs confirmation from real project data.",
       stack: ["Next.js", "API integration", "Responsive UI"],
       liveUrl: undefined,
       githubUrl: undefined,

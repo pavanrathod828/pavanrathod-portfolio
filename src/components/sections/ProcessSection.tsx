@@ -1,13 +1,25 @@
 "use client";
 
-import { CheckCircle2, Code2, ListChecks, Rocket } from "lucide-react";
+import { ClipboardList, Hammer, Rocket, TestTube } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { siteData } from "@/data/site";
 import { SectionBadge } from "@/components/ui/SectionBadge";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/layout/Container";
+import { cn } from "@/lib/utils";
 
-const icons = [ListChecks, Code2, CheckCircle2, Rocket];
+const stepIcons = [ClipboardList, Hammer, TestTube, Rocket];
+
+const accents = [
+  {
+    badge: "border-cyan-300/20 bg-cyan-300/10 text-cyan-100",
+    glow: "shadow-[0_0_24px_rgba(34,211,238,0.12)]",
+  },
+  {
+    badge: "border-violet-300/25 bg-violet-300/10 text-violet-100",
+    glow: "shadow-[0_0_24px_rgba(167,139,250,0.12)]",
+  },
+];
 
 export function ProcessSection() {
   const reduceMotion = useReducedMotion();
@@ -16,7 +28,7 @@ export function ProcessSection() {
     <section
       id="process"
       aria-labelledby="process-heading"
-      className="py-24"
+      className="scroll-mt-24 py-24"
     >
       <Container>
         <Card className="rounded-[2rem] p-5 shadow-2xl shadow-black/25 sm:p-8 lg:p-10">
@@ -43,31 +55,44 @@ export function ProcessSection() {
             </div>
           </motion.div>
 
-          <div className="mt-12 grid gap-4 md:grid-cols-4">
-            {siteData.processSteps.map((step, index) => {
-              const Icon = icons[index] ?? ListChecks;
+          <div className="relative mt-12">
+            <div
+              aria-hidden="true"
+              className="absolute left-[12.5%] right-[12.5%] top-[2.75rem] hidden border-t border-dashed border-white/10 md:block"
+            />
+            <div className="relative grid gap-4 md:grid-cols-4">
+              {siteData.processSteps.map((step, index) => {
+                const Icon = stepIcons[index] ?? ClipboardList;
+                const accent = accents[index % accents.length];
 
-              return (
-                <motion.div
-                  key={step.title}
-                  initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-                  whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.05 }}
-                >
-                  <Card className="relative h-full overflow-hidden rounded-3xl bg-slate-950/60">
-                    <div className="flex size-11 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-cyan-100">
-                      <Icon aria-hidden="true" className="size-5" />
-                    </div>
-                    <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
-                      Step {index + 1}
-                    </p>
-                    <h3 className="mt-2 text-lg font-semibold text-white">{step.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-400">{step.description}</p>
-                  </Card>
-                </motion.div>
-              );
-            })}
+                return (
+                  <motion.div
+                    key={step.title}
+                    initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                    whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.05 }}
+                  >
+                    <Card className="relative h-full overflow-hidden rounded-3xl bg-slate-950/60">
+                      <div
+                        className={cn(
+                          "flex size-11 items-center justify-center rounded-2xl border",
+                          accent.badge,
+                          accent.glow,
+                        )}
+                      >
+                        <Icon aria-hidden="true" className="size-5" />
+                      </div>
+                      <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+                        Step {index + 1}
+                      </p>
+                      <h3 className="mt-2 text-lg font-semibold text-white">{step.title}</h3>
+                      <p className="mt-3 text-sm leading-6 text-slate-400">{step.description}</p>
+                    </Card>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </Card>
       </Container>
