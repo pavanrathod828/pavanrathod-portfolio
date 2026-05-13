@@ -44,7 +44,14 @@ export function ContactSection() {
               <p className="mt-5 max-w-2xl text-base leading-8 text-[#d9cfb5]">
                 {siteData.contact.body}
               </p>
-              <p className="mt-4 text-sm leading-7 text-[#8a8278]">{siteData.email}</p>
+              <p className="mt-4 text-sm leading-7">
+                <a
+                  href={`mailto:${siteData.email}`}
+                  className="inline-block text-[#d9cfb5] underline-offset-4 transition-colors hover:text-[#faf7f0] hover:underline focus-visible:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#faf7f0] motion-reduce:transition-none"
+                >
+                  {siteData.email}
+                </a>
+              </p>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
