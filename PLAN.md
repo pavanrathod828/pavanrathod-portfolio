@@ -6,9 +6,9 @@
 
 ## STATUS
 
-- **Current phase:** Phase 0 complete (reading + decisions locked). Ready for Phase 1.
-- **Last completed:** Reference file read (LBT index.html, 2,370 lines). Strategic decisions locked. This plan written.
-- **Next action:** Read this doc end-to-end. Push back on anything in "Locked Decisions" that feels wrong. Once you say "go," Claude writes Phase 1 (design tokens spec — no code, just the system).
+- **Current phase:** Phase 2 complete. Ready for Phase 3 (hero component).
+- **Last completed:** Phase 2: branch redesign-scrollytelling created, GSAP installed (^3.15.0), PLAN.md committed, Vercel preview live.
+- **Next action:** Pavan provides the line-led headline copy direction for the hero, then Claude Code writes the pinned hero component (LBT-adapted scrub timeline).
 
 ---
 
@@ -136,8 +136,9 @@ Each section ships independently. Don't try to do them all in one session.
 - **Local repo:** `~/Code/pavanrathod-portfolio`
 - **GitHub:** https://github.com/pavanrathod828/pavanrathod-portfolio
 - **Live site:** https://pavanrathod.com (serving `main`)
-- **Branch for this work:** `redesign-scrollytelling` (not created yet — Phase 2)
-- **Vercel preview URL:** _(filled in after Phase 2)_
+- **Branch for this work:** `redesign-scrollytelling` (created, pushed, tracking origin)
+- **Vercel preview URL:** [PASTE_URL_HERE — Pavan will provide]
+- **Latest commit on redesign branch:** 5b7749e (PLAN.md import)
 - **LBT reference file (your machine):** `/Users/pavanrathod/LBT/lbt-presentation/index.html`
 - **LBT live:** https://pavanrathodcs.github.io/lbt-rider-data/
 
@@ -159,4 +160,6 @@ Each section ships independently. Don't try to do them all in one session.
 Append a one-liner each session so future-you can see the path.
 
 - **May 13, 2026** — Phase 0 done. Reference read. Decisions locked. This plan written.
+- **May 13, 2026** — Phase 1 done. docs/design-tokens.md written and locked after one revision round (letter-spacing, line-height, ease-entry curve corrected to match LBT exactly). Commit c1b5ffd.
+- **May 13, 2026** — Phase 2 done. Branch redesign-scrollytelling created from main, GSAP ^3.15.0 installed, no Lenis, motion lib confirmed at ^12.38.0, PLAN.md imported to repo root. Commits f11a4e1, 5b7749e. Vercel preview confirmed building cleanly on every commit.
 - **___** — _(next session)_
