@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pavanrathod.com"),
   title: "Pavan Rathod | Portfolio in Progress",
   description:
     "Placeholder-safe premium animated portfolio MVP for Pavan Rathod, built with Next.js, TypeScript, and Tailwind CSS.",
