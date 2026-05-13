@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { siteData } from "@/data/site";
 import { MobileNav } from "@/components/layout/MobileNav";
 
@@ -10,9 +11,17 @@ export function Header() {
       >
         <a
           href="#home"
-          className="text-sm font-semibold tracking-[0.24em] text-[#1c1a17] uppercase focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1c1a17]"
+          aria-label="Pavan Rathod — home"
+          className="inline-flex items-center rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1c1a17]"
         >
-          PR
+          <Image
+            src="/apple-touch-icon.png"
+            alt="PR — Pavan Rathod"
+            width={32}
+            height={32}
+            className="rounded-md"
+            priority
+          />
         </a>
         <div className="hidden items-center gap-1 md:flex">
           {siteData.navItems.map((item) => (
