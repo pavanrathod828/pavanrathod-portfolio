@@ -11,6 +11,7 @@ export function MobileNav() {
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
+  const wasOpen = useRef(false);
 
   useEffect(() => {
     if (!open) return;
@@ -53,9 +54,10 @@ export function MobileNav() {
   }, [open]);
 
   useEffect(() => {
-    if (!open) {
+    if (!open && wasOpen.current) {
       triggerRef.current?.focus();
     }
+    wasOpen.current = open;
   }, [open]);
 
   const slideDuration = reduceMotion ? 0 : 0.3;
