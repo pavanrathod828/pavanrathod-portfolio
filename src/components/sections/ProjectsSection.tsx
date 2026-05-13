@@ -1,6 +1,6 @@
 "use client";
 
-import { Code2, ExternalLink, FileCode2, GitBranch } from "lucide-react";
+import { Clock, Code2, ExternalLink, FileCode2, GitBranch, Lock } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { siteData, type ProjectStatus } from "@/data/site";
 import { ButtonLink } from "@/components/ui/ButtonLink";
@@ -125,7 +125,7 @@ export function ProjectsSection() {
                       })}
                     </div>
 
-                    <div className="mt-8 flex flex-wrap gap-2 pt-2">
+                    <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 pt-2">
                       {project.githubUrl ? (
                         <ButtonLink
                           href={project.githubUrl}
@@ -137,7 +137,8 @@ export function ProjectsSection() {
                           {project.githubLabel ?? "GitHub"}
                         </ButtonLink>
                       ) : project.githubLabel ? (
-                        <span className="inline-flex min-h-10 items-center rounded-full border border-[#d9cfb5] px-3 py-2 text-xs text-[#5a544c]">
+                        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#8a8278]">
+                          <Lock aria-hidden="true" className="size-3" />
                           {project.githubLabel}
                         </span>
                       ) : null}
@@ -152,7 +153,8 @@ export function ProjectsSection() {
                           {project.liveLabel ?? "Live"}
                         </ButtonLink>
                       ) : project.liveLabel ? (
-                        <span className="inline-flex min-h-10 items-center rounded-full border border-[#d9cfb5] px-3 py-2 text-xs text-[#5a544c]">
+                        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#8a8278]">
+                          <Clock aria-hidden="true" className="size-3" />
                           {project.liveLabel}
                         </span>
                       ) : null}
