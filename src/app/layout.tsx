@@ -21,15 +21,15 @@ const instrumentSerif = Instrument_Serif({
 
 const siteUrl = "https://pavanrathod.com";
 const siteName = "Pavan Rathod";
-const siteTitle = "Pavan Rathod | Portfolio in Progress";
+const siteTitle = "Pavan Rathod — Software Engineer";
 const siteDescription =
-  "Placeholder-safe premium animated portfolio MVP for Pavan Rathod, built with Next.js, TypeScript, and Tailwind CSS.";
+  "CS student at CSULB building Next.js and Python applications, including a hotel booking platform and AI-powered tools. Seeking Summer 2026 and 2027 SWE internships.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: siteTitle,
-    template: "%s | Pavan Rathod",
+    template: "Pavan Rathod | %s",
   },
   description: siteDescription,
   applicationName: siteName,
@@ -47,11 +47,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    creator: "@pavanrathod",
-  },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
   },
   robots: {
     index: true,
