@@ -1,4 +1,5 @@
 import { siteData } from "@/data/site";
+import { MobileNav } from "@/components/layout/MobileNav";
 
 export function Header() {
   return (
@@ -30,6 +31,7 @@ export function Header() {
         >
           Contact
         </a>
+        <MobileNav />
       </nav>
     </header>
   );
