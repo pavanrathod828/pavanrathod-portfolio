@@ -29,12 +29,12 @@ export function SectionHeader({
       </SectionBadge>
       <h2
         id={headingId}
-        className="mt-5 text-3xl font-semibold leading-tight text-white sm:text-5xl"
+        className="mt-5 font-serif text-[clamp(2.25rem,5vw,4rem)] font-normal leading-[1.05] tracking-[-0.015em] text-[#1c1a17]"
       >
         {title}
       </h2>
       {description ? (
-        <p className="mt-5 text-base leading-8 text-slate-300">{description}</p>
+        <p className="mt-5 text-base leading-8 text-[#5a544c]">{description}</p>
       ) : null}
     </div>
   );

@@ -11,11 +11,11 @@ type ButtonLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 
 const variants = {
   primary:
-    "border-cyan-300/70 bg-cyan-300 text-slate-950 shadow-[0_0_36px_rgba(103,232,249,0.28)] hover:border-cyan-200 hover:bg-cyan-200",
+    "border-[#1c1a17] bg-[#1c1a17] text-[#faf7f0] hover:border-[#4a3a26] hover:bg-[#4a3a26]",
   secondary:
-    "border-white/15 bg-white/[0.07] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:border-white/30 hover:bg-white/[0.12]",
+    "border-[#d9cfb5] bg-transparent text-[#1c1a17] hover:border-[#b8a989] hover:bg-[#ebe4d3]",
   ghost:
-    "border-transparent bg-transparent text-slate-300 hover:border-white/15 hover:bg-white/[0.06] hover:text-white",
+    "border-transparent bg-transparent text-[#1c1a17] hover:border-[#d9cfb5] hover:bg-[#ebe4d3]",
 };
 
 export function ButtonLink({
@@ -31,7 +31,7 @@ export function ButtonLink({
   return (
     <a
       className={cn(
-        "group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300",
+        "group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1c1a17]",
         "motion-reduce:transition-none",
         variants[variant],
         className,
