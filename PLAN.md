@@ -137,7 +137,7 @@ Each section ships independently. Don't try to do them all in one session.
 - **GitHub:** https://github.com/pavanrathod828/pavanrathod-portfolio
 - **Live site:** https://pavanrathod.com (serving `main`)
 - **Branch for this work:** `redesign-scrollytelling` (created, pushed, tracking origin)
-- **Vercel preview URL:** [PASTE_URL_HERE — Pavan will provide]
+- **Vercel preview URL:** https://pavanrathod-portfolio-27n5k8htj-ipavan828s-projects.vercel.app
 - **Latest commit on redesign branch:** 5b7749e (PLAN.md import)
 - **LBT reference file (your machine):** `/Users/pavanrathod/LBT/lbt-presentation/index.html`
 - **LBT live:** https://pavanrathodcs.github.io/lbt-rider-data/
