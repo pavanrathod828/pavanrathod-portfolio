@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +10,13 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["italic", "normal"],
 });
 
 const siteUrl = "https://pavanrathod.com";
@@ -53,8 +60,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#02040a",
-  colorScheme: "dark",
+  themeColor: "#faf7f0",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -65,12 +72,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-cyan-300 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-950 focus:shadow-[0_0_24px_rgba(103,232,249,0.45)] focus:outline focus:outline-2 focus:outline-offset-4 focus:outline-cyan-300"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-[#1c1a17] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#faf7f0] focus:shadow-[0_10px_30px_-10px_rgba(28,26,23,0.4)] focus:outline focus:outline-2 focus:outline-offset-4 focus:outline-[#1c1a17]"
         >
           Skip to content
         </a>

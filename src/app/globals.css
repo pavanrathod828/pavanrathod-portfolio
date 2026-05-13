@@ -1,16 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --background: #02040a;
-  --foreground: #f8fafc;
-  color-scheme: dark;
+  --bg-base: #faf7f0;
+  --bg-soft: #ebe4d3;
+  --border-soft: #d9cfb5;
+  --border-strong: #b8a989;
+  --text-primary: #1c1a17;
+  --text-muted: #5a544c;
+  --text-faint: #8a8278;
+  --accent-bronze: #6b5638;
+  --accent-bronze-deep: #4a3a26;
+  --accent-amber: #c4985a;
+  --code-bg: #1a1815;
+  --code-fg: #e8e0d0;
+  --code-border: #2a2620;
+  --code-keyword: #b8a989;
+  --code-string: #c4985a;
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg-base);
+  --color-foreground: var(--text-primary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-instrument-serif);
 }
 
 * {
@@ -19,24 +33,24 @@
 
 html {
   scroll-behavior: smooth;
-  background: var(--background);
+  background: var(--bg-base);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-base);
+  color: var(--text-primary);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: rgba(103, 232, 249, 0.35);
-  color: #ffffff;
+  background: #d9cfb5;
+  color: #1c1a17;
 }
 
 :focus-visible {
-  outline: 2px solid rgba(103, 232, 249, 0.9);
-  outline-offset: 3px;
+  outline: 2px solid #1c1a17;
+  outline-offset: 2px;
   border-radius: 4px;
 }
 
