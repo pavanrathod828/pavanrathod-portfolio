@@ -1,3 +1,20 @@
+/**
+ * Placeholder-safe content model for pavanrathod.com.
+ *
+ * Conventions:
+ * - Every user-visible string that is not yet verified begins with
+ *   "PLACEHOLDER" or "PLACEHOLDER-SAFE". Components should treat this prefix
+ *   as a contract — see ContactSection for an example of hiding raw
+ *   placeholder strings behind a friendlier fallback at render time.
+ * - `isPlaceholder` flags mark records that should be replaced with verified
+ *   data (resume, LinkedIn, GitHub, screenshots) before launch. The flag is
+ *   typed as `boolean` so real entries can opt out by setting it to `false`.
+ * - Adding new fields here is the right way to share content across sections.
+ *   Components must not hard-code user-facing copy.
+ * - When swapping placeholders for real content, follow the checklist in
+ *   docs/CONTENT_INTAKE.md. Do not commit raw exports or private files.
+ */
+
 export type NavItem = {
   label: string;
   href: string;
@@ -14,20 +31,20 @@ export type Project = {
   stack: string[];
   liveUrl?: string;
   githubUrl?: string;
-  isPlaceholder: true;
+  isPlaceholder: boolean;
 };
 
 export type SkillGroup = {
   category: string;
   items: string[];
-  isPlaceholder: true;
+  isPlaceholder: boolean;
 };
 
 export type SocialLink = {
   label: string;
   href: string;
   handle: string;
-  isPlaceholder: true;
+  isPlaceholder: boolean;
 };
 
 export const siteData = {
