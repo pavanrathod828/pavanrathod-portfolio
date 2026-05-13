@@ -1,6 +1,6 @@
 "use client";
 
-import { Code2, ExternalLink, FileCode2, GitBranch, ShieldAlert } from "lucide-react";
+import { Code2, ExternalLink, FileCode2, GitBranch } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { siteData, type ProjectStatus } from "@/data/site";
 import { ButtonLink } from "@/components/ui/ButtonLink";
@@ -56,10 +56,10 @@ export function ProjectsSection() {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <SectionHeader
-            badge="Featured Projects"
+            badge={siteData.projectsSection.badge}
             headingId="projects-heading"
-            title="Selected projects across product work, AI workflows, and personal builds."
-            description="A small set of placeholder cards while real project case studies are being prepared."
+            title={siteData.projectsSection.headline}
+            description={siteData.projectsSection.description}
           />
         </motion.div>
 
@@ -81,23 +81,25 @@ export function ProjectsSection() {
                   className="relative h-full"
                 >
                   <div className="relative flex h-full flex-col">
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="rounded-full border border-[#d9cfb5] bg-[#ebe4d3] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#6b5638]">
-                          Placeholder
+                    <div className="flex flex-wrap items-center gap-2">
+                      {project.pills.map((pill) => (
+                        <span
+                          key={pill}
+                          className="rounded-full border border-[#d9cfb5] bg-[#ebe4d3] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#6b5638]"
+                        >
+                          {pill}
                         </span>
-                        {status ? (
-                          <span
-                            className={cn(
-                              "rounded-full border px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em]",
-                              status.className,
-                            )}
-                          >
-                            {status.label}
-                          </span>
-                        ) : null}
-                      </div>
-                      <ShieldAlert aria-hidden="true" className="size-5 text-[#8a8278]" />
+                      ))}
+                      {status ? (
+                        <span
+                          className={cn(
+                            "rounded-full border px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em]",
+                            status.className,
+                          )}
+                        >
+                          {status.label}
+                        </span>
+                      ) : null}
                     </div>
 
                     <div className="mt-8">
@@ -132,8 +134,12 @@ export function ProjectsSection() {
                           variant="ghost"
                           className="min-h-10 px-3 py-2 text-xs"
                         >
-                          GitHub
+                          {project.githubLabel ?? "GitHub"}
                         </ButtonLink>
+                      ) : project.githubLabel ? (
+                        <span className="inline-flex min-h-10 items-center rounded-full border border-[#d9cfb5] px-3 py-2 text-xs text-[#5a544c]">
+                          {project.githubLabel}
+                        </span>
                       ) : null}
                       {project.liveUrl ? (
                         <ButtonLink
@@ -143,8 +149,12 @@ export function ProjectsSection() {
                           variant="ghost"
                           className="min-h-10 px-3 py-2 text-xs"
                         >
-                          Live
+                          {project.liveLabel ?? "Live"}
                         </ButtonLink>
+                      ) : project.liveLabel ? (
+                        <span className="inline-flex min-h-10 items-center rounded-full border border-[#d9cfb5] px-3 py-2 text-xs text-[#5a544c]">
+                          {project.liveLabel}
+                        </span>
                       ) : null}
                     </div>
                   </div>

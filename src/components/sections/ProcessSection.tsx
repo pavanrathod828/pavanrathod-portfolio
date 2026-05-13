@@ -34,18 +34,16 @@ export function ProcessSection() {
             className="grid gap-8 lg:grid-cols-[0.72fr_1fr]"
           >
             <div>
-              <SectionBadge>AI Workflow</SectionBadge>
+              <SectionBadge>{siteData.process.badge}</SectionBadge>
               <h2
                 id="process-heading"
                 className="mt-5 font-serif text-[clamp(2.25rem,5vw,4rem)] font-normal leading-[1.05] tracking-[-0.015em] text-[#1c1a17]"
               >
-                Responsible AI-assisted development, with human review in the loop.
+                {siteData.process.headline}
               </h2>
             </div>
-            <div className="space-y-5 text-base leading-8 text-[#1c1a17]">
-              {siteData.processIntro.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
+            <div className="text-base leading-8 text-[#1c1a17]">
+              <p>{siteData.process.body}</p>
             </div>
           </motion.div>
 
@@ -55,7 +53,7 @@ export function ProcessSection() {
               className="absolute left-[12.5%] right-[12.5%] top-[2.75rem] hidden border-t border-dashed border-[#d9cfb5] opacity-60 md:block"
             />
             <div className="relative grid gap-4 md:grid-cols-4">
-              {siteData.processSteps.map((step, index) => {
+              {siteData.process.steps.map((step, index) => {
                 const Icon = stepIcons[index] ?? ClipboardList;
                 const accent = accents[index % accents.length];
 
@@ -80,7 +78,7 @@ export function ProcessSection() {
                         Step {index + 1}
                       </p>
                       <h3 className="mt-2 text-lg font-semibold text-[#1c1a17]">{step.title}</h3>
-                      <p className="mt-3 text-sm leading-6 text-[#5a544c]">{step.description}</p>
+                      <p className="mt-3 text-sm leading-6 text-[#5a544c]">{step.body}</p>
                     </Card>
                   </motion.div>
                 );

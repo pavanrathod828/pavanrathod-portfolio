@@ -1,6 +1,6 @@
 "use client";
 
-import { Code, Cloud, Layers, Sparkles, Wrench, type LucideIcon } from "lucide-react";
+import { Cloud, Code, Layers, Sparkles, Wrench, type LucideIcon } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { siteData } from "@/data/site";
 import { SectionBadge } from "@/components/ui/SectionBadge";
@@ -10,9 +10,9 @@ import { Container } from "@/components/layout/Container";
 function categoryIcon(category: string): LucideIcon {
   const c = category.toLowerCase();
   if (c.includes("front")) return Layers;
-  if (c.includes("language")) return Code;
+  if (c.includes("backend")) return Code;
+  if (c.includes("cloud")) return Cloud;
   if (c.includes("ai")) return Sparkles;
-  if (c.includes("deploy")) return Cloud;
   return Wrench;
 }
 
@@ -34,16 +34,16 @@ export function SkillsSection() {
           className="flex flex-col justify-between gap-6 md:flex-row md:items-end"
         >
           <div className="max-w-3xl">
-            <SectionBadge icon={Wrench}>Skills</SectionBadge>
+            <SectionBadge icon={Wrench}>{siteData.skillsSection.badge}</SectionBadge>
             <h2
               id="skills-heading"
               className="mt-5 font-serif text-[clamp(2.25rem,5vw,4rem)] font-normal leading-[1.05] tracking-[-0.015em] text-[#1c1a17]"
             >
-              A working stack across frontend, languages, AI tools, and deployment.
+              {siteData.skillsSection.headline}
             </h2>
           </div>
           <p className="max-w-md text-sm leading-7 text-[#5a544c]">
-            Tools, frameworks, and languages I work with — depth varies by area.
+            {siteData.skillsSection.description}
           </p>
         </motion.div>
 
@@ -68,7 +68,7 @@ export function SkillsSection() {
                     </h3>
                   </div>
                   <div className="mt-5 flex flex-wrap gap-2">
-                    {group.items.map((skill) => (
+                    {group.chips.map((skill) => (
                       <span
                         key={skill}
                         className="rounded-full bg-[#ebe4d3] px-3 py-2 text-sm text-[#5a544c] transition hover:bg-[#d9cfb5] motion-reduce:transition-none"

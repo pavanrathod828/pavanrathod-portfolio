@@ -1,18 +1,12 @@
 /**
- * Placeholder-safe content model for pavanrathod.com.
+ * Verified content model for pavanrathod.com.
  *
  * Conventions:
- * - Every user-visible string that is not yet verified begins with
- *   "PLACEHOLDER" or "PLACEHOLDER-SAFE". Components should treat this prefix
- *   as a contract — see ContactSection for an example of hiding raw
- *   placeholder strings behind a friendlier fallback at render time.
- * - `isPlaceholder` flags mark records that should be replaced with verified
- *   data (resume, LinkedIn, GitHub, screenshots) before launch. The flag is
- *   typed as `boolean` so real entries can opt out by setting it to `false`.
- * - Adding new fields here is the right way to share content across sections.
- *   Components must not hard-code user-facing copy.
- * - When swapping placeholders for real content, follow the checklist in
- *   docs/CONTENT_INTAKE.md. Do not commit raw exports or private files.
+ * - User-visible copy lives here and is consumed by section components.
+ *   Components should not hardcode strings.
+ * - `isPlaceholder` flags are kept on the types for future drafts, but every
+ *   record in this file is real, verified content (so they are all `false`).
+ * - See docs/CONTENT_INTAKE.md for how to update content safely.
  */
 
 export type NavItem = {
@@ -28,42 +22,56 @@ export type Project = {
   summary: string;
   status?: ProjectStatus;
   statusNote: string;
+  pills: string[];
   stack: string[];
-  liveUrl?: string;
-  githubUrl?: string;
+  liveUrl: string | null;
+  liveLabel: string | null;
+  githubUrl: string | null;
+  githubLabel: string | null;
   isPlaceholder: boolean;
 };
 
 export type SkillGroup = {
   category: string;
-  items: string[];
+  chips: string[];
   isPlaceholder: boolean;
 };
 
 export type SocialLink = {
   label: string;
   href: string;
-  handle: string;
   isPlaceholder: boolean;
+};
+
+export type AboutFeature = {
+  title: string;
+  body: string;
+};
+
+export type ProcessStep = {
+  title: string;
+  body: string;
+};
+
+export type ContactButton = {
+  label: string;
+  href: string;
 };
 
 export const siteData = {
   name: "Pavan Rathod",
-  role: "PLACEHOLDER - Computer Science student and web developer",
-  tagline:
-    "PLACEHOLDER - I build modern, animated web experiences with code, AI, and product thinking.",
-  placeholderNote:
-    "PLACEHOLDER-SAFE CONTENT - Real resume, LinkedIn, GitHub, project screenshots, and Claude-summary details have not been added yet.",
-  location: "PLACEHOLDER - California, United States",
-  email: "PLACEHOLDER - add verified public email",
-  linkedin: "https://www.linkedin.com/in/replace-with-verified-profile",
-  github: "https://github.com/replace-with-verified-username",
+  email: "pavanrwork@gmail.com",
+  location: "Torrance, CA",
+  linkedin: "https://www.linkedin.com/in/pavan-rathod-64b0b7254/",
+  github: "https://github.com/pavanrathod828",
   resumeUrl: "/resume.pdf",
+  tagline:
+    "Computer Science student at CSULB building full-stack web products — booking platforms, AI tools, and modern web experiences.",
+  heroEyebrow: "Software Engineering · CSULB '28 · Los Angeles",
+  heroSubTagline:
+    "Seeking Software Engineering internships for Summer 2026 and 2027. Currently building a booking platform for an LA-area hotel.",
   hero: {
-    eyebrow: "Portfolio in progress",
     headline: "Pavan Rathod",
-    subheadline:
-      "PLACEHOLDER - A premium animated portfolio for projects, technical skills, design taste, and responsible AI-assisted development workflow.",
   },
   navItems: [
     { label: "Home", href: "#home" },
@@ -72,133 +80,169 @@ export const siteData = {
     { label: "Skills", href: "#skills" },
     { label: "Process", href: "#process" },
     { label: "Contact", href: "#contact" },
-  ],
-  aboutPreview: {
+  ] as const,
+  socialLinks: [
+    {
+      label: "Email",
+      href: "mailto:pavanrwork@gmail.com",
+      isPlaceholder: false,
+    },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/pavan-rathod-64b0b7254/",
+      isPlaceholder: false,
+    },
+    {
+      label: "GitHub",
+      href: "https://github.com/pavanrathod828",
+      isPlaceholder: false,
+    },
+  ] as const,
+  about: {
+    badge: "About",
+    headline:
+      "Building thoughtful web products with modern tools and clear engineering.",
     paragraphs: [
-      "PLACEHOLDER-SAFE - This website is being built as a polished portfolio system for Pavan Rathod. The first version focuses on structure, motion, responsiveness, and a content model that can later accept verified resume, LinkedIn, GitHub, and project data.",
-      "PLACEHOLDER-SAFE - The final site should present real projects, technical skills, design taste, and an AI-assisted development process without overstating what is proven. Until then, visible placeholders mark every unverified claim.",
+      "I'm a CS student at CSULB ('28), minoring in Finance. My work sits between full-stack engineering and product thinking — I care about clean code, but I care just as much about whether what I build is actually useful to the person on the other side of the screen.",
+      "Right now I'm building the first website and booking platform for an LA-area hotel, shipping production code in Next.js and TypeScript with Stripe for payments. Alongside that, I work on Python and Flask projects for AI tooling, backend services, and small utilities. Recognized on the CSULB President's Honor List.",
     ],
-    focusAreas: [
+    features: [
       {
-        title: "Projects",
-        description: "Reserved for verified project summaries, links, screenshots, and case studies.",
+        title: "Full-Stack Builder",
+        body: "Next.js, TypeScript, Tailwind, React on the frontend. Python, Flask, Stripe, AWS on the backend. Equally comfortable on either side.",
       },
       {
-        title: "Technical craft",
-        description: "A clean Next.js, TypeScript, and Tailwind foundation for a fast portfolio.",
+        title: "AI-Assisted Workflow",
+        body: "Use Claude Code, Codex, and Copilot to plan, ship, and review work — never to skip code review or testing.",
       },
       {
-        title: "AI workflow",
-        description: "A professional process where AI assists planning and coding while Pavan reviews.",
+        title: "Foundations",
+        body: "DSA practice via NeetCode. AWS Certified Cloud Practitioner. CSULB President's Honor List.",
       },
     ],
   },
   projects: [
     {
-      title: "pavanrathod.com",
+      title: "Skyways Hotel — Booking Platform",
+      slug: "skyways-hotel",
+      summary:
+        "First-party website and booking platform for an operating LA-area hotel. Replacing a third-party booking dependency with a Stripe-powered reservation flow, plus a separate ordering subsystem for on-property services.",
+      status: "in_progress",
+      statusNote: "In development, v1 launching May 2026.",
+      pills: ["Client work"],
+      stack: ["Next.js", "TypeScript", "Tailwind", "Stripe", "Vercel"],
+      githubUrl: null,
+      githubLabel: "GitHub: private",
+      liveUrl: null,
+      liveLabel: "Live: coming May 2026",
+      isPlaceholder: false,
+    },
+    {
+      title: "pavanrathod.com — Portfolio Platform",
       slug: "pavanrathod-com",
       summary:
-        "Placeholder entry for this portfolio site as a case study once design, implementation, and deployment details are verified.",
-      status: "in_progress",
-      statusNote: "Placeholder until the portfolio build has shipped.",
-      stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+        "Premium animated personal portfolio in Next.js 16, TypeScript, and Tailwind v4 with motion animations, full WCAG AA accessibility, and a custom warm-light design system. Built with Claude Code and Codex in an AI-paired workflow.",
+      status: "live",
+      statusNote: "The site you're reading this on.",
+      pills: ["Personal"],
+      stack: ["Next.js", "TypeScript", "Tailwind v4", "Motion", "Vercel"],
+      githubUrl: "https://github.com/pavanrathod828/pavanrathod-portfolio",
+      githubLabel: "GitHub",
       liveUrl: "https://pavanrathod.com",
-      githubUrl: "https://github.com/replace-with-verified-username/pavanrathod.com",
-      isPlaceholder: true,
+      liveLabel: "Live",
+      isPlaceholder: false,
     },
     {
-      title: "Featured project 1",
-      slug: "featured-project-1",
+      title: "VidSnapAI — AI Short-Form Video Generator",
+      slug: "vidsnap-ai",
       summary:
-        "Placeholder for a verified project summary from resume, GitHub, LinkedIn, or project notes.",
-      status: "concept",
-      statusNote: "Needs confirmation from real project data.",
-      stack: ["React", "TypeScript", "Tailwind CSS"],
-      liveUrl: undefined,
-      githubUrl: undefined,
-      isPlaceholder: true,
+        "Flask REST service that takes uploaded media, generates TTS narration, and renders short videos via an ffmpeg pipeline. Includes job-status polling, rate limiting, exponential-backoff retries, and structured logging.",
+      status: "live",
+      statusNote: "Released October 2025.",
+      pills: ["Backend"],
+      stack: ["Python", "Flask", "ffmpeg", "REST APIs"],
+      githubUrl: null,
+      githubLabel: "GitHub: private",
+      liveUrl: null,
+      liveLabel: null,
+      isPlaceholder: false,
     },
-    {
-      title: "Featured project 2",
-      slug: "featured-project-2",
-      summary:
-        "Placeholder for another strong project with verified scope, links, screenshots, and outcomes.",
-      status: "concept",
-      statusNote: "Needs confirmation from real project data.",
-      stack: ["Next.js", "API integration", "Responsive UI"],
-      liveUrl: undefined,
-      githubUrl: undefined,
-      isPlaceholder: true,
-    },
-  ],
+  ] as const,
+  projectsSection: {
+    badge: "Featured Projects",
+    headline:
+      "Selected projects across full-stack web, AI tooling, and backend systems.",
+    description:
+      "A working portfolio of recent work — a booking platform, AI tools, a video generator, and the site you're reading this on.",
+  },
   skills: [
     {
       category: "Frontend",
-      items: ["PLACEHOLDER - React", "PLACEHOLDER - Next.js", "PLACEHOLDER - Tailwind CSS"],
-      isPlaceholder: true,
+      chips: ["Next.js", "React", "TypeScript", "Tailwind", "Motion", "HTML/CSS"],
+      isPlaceholder: false,
     },
     {
-      category: "Languages",
-      items: ["PLACEHOLDER - TypeScript", "PLACEHOLDER - JavaScript"],
-      isPlaceholder: true,
+      category: "Backend & APIs",
+      chips: ["Python", "Flask", "REST APIs", "Stripe", "JSON", "HTTP", "Jinja2"],
+      isPlaceholder: false,
     },
     {
-      category: "AI and developer tools",
-      items: ["PLACEHOLDER - Codex", "PLACEHOLDER - ChatGPT", "PLACEHOLDER - Claude"],
-      isPlaceholder: true,
+      category: "Cloud & Tools",
+      chips: ["AWS", "Vercel", "Git", "GitHub", "Linux", "VS Code", "ffmpeg"],
+      isPlaceholder: false,
     },
     {
-      category: "Deployment",
-      items: ["PLACEHOLDER - Vercel", "PLACEHOLDER - GitHub"],
-      isPlaceholder: true,
+      category: "AI-Assisted Development",
+      chips: ["Claude Code", "Codex", "GitHub Copilot", "ChatGPT"],
+      isPlaceholder: false,
     },
-  ],
-  processIntro: [
-    "PLACEHOLDER-SAFE - This section frames AI as an accelerator for planning, implementation support, and iteration. It does not claim that AI replaces the developer or that unreviewed generated code is shipped.",
-    "The workflow is intentionally simple: plan the feature, build with clear constraints, test the result, and deploy only after review.",
-  ],
-  processSteps: [
-    {
-      title: "Plan",
-      description: "Define the goal, constraints, content truth rules, and design direction before writing code.",
-    },
-    {
-      title: "Build",
-      description: "Use reusable components, typed data, and AI assistance where it speeds up careful implementation.",
-    },
-    {
-      title: "Test",
-      description: "Run lint, build, responsive checks, and manual review before treating the work as finished.",
-    },
-    {
-      title: "Deploy",
-      description: "Ship through a clean GitHub and Vercel workflow after private files and placeholders are reviewed.",
-    },
-  ],
-  contactCta: {
-    heading: "Open to internships, freelance, and short collaborations.",
-    body: "Reach out by email or social — verified contact details will replace placeholders before launch.",
+  ] as const,
+  skillsSection: {
+    badge: "Skills",
+    headline:
+      "A working stack across frontend, backend, cloud, and AI tooling.",
+    description:
+      "Depth varies by area — frontend and Python/Flask are strongest, AWS and Stripe are growing through current projects.",
   },
-  socialLinks: [
-    {
-      label: "Email",
-      href: "mailto:replace-with-verified-email@example.com",
-      handle: "PLACEHOLDER - verified email needed",
-      isPlaceholder: true,
-    },
-    {
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/replace-with-verified-profile",
-      handle: "PLACEHOLDER - verified LinkedIn URL needed",
-      isPlaceholder: true,
-    },
-    {
-      label: "GitHub",
-      href: "https://github.com/replace-with-verified-username",
-      handle: "PLACEHOLDER - verified GitHub username needed",
-      isPlaceholder: true,
-    },
-  ],
+  process: {
+    badge: "AI Workflow",
+    headline:
+      "Responsible AI-assisted development, with human review in the loop.",
+    body: "I use AI tools the way I use any tool — to plan more clearly, ship faster, and catch mistakes earlier. Every line of generated code is reviewed before it gets committed. Here's how I actually work.",
+    steps: [
+      {
+        title: "Plan",
+        body: "Use Claude and ChatGPT to think through requirements, edge cases, and architecture before writing code. Document decisions in markdown.",
+      },
+      {
+        title: "Build",
+        body: "Pair with Claude Code or Codex inside VS Code for implementation. Write typed, reviewable code in small commits.",
+      },
+      {
+        title: "Test",
+        body: "Run lint, build, type checks, and manual review at every phase boundary. Fix what's broken before moving forward.",
+      },
+      {
+        title: "Ship",
+        body: "Deploy via Vercel from GitHub. Smoke test the live build. Monitor and iterate based on real use.",
+      },
+    ],
+  },
+  contact: {
+    badge: "Contact",
+    headline:
+      "Open to internships, freelance projects, and short collaborations.",
+    body: "Best reached by email. Currently in Los Angeles and open to remote, hybrid, or on-site roles for Summer 2026 and Summer 2027 cycles.",
+    buttons: [
+      { label: "Email", href: "mailto:pavanrwork@gmail.com" },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/pavan-rathod-64b0b7254/",
+      },
+      { label: "GitHub", href: "https://github.com/pavanrathod828" },
+    ] as const,
+  },
+  footerText: "© 2026 Pavan Rathod · Built with Next.js, deployed on Vercel",
 } as const;
 
 export default siteData;

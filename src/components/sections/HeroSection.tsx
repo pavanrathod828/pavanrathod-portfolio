@@ -6,12 +6,10 @@ import {
   GitBranch,
   Link as LinkIcon,
   Mail,
-  Sparkles,
 } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { siteData } from "@/data/site";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { SectionBadge } from "@/components/ui/SectionBadge";
 import { Container } from "@/components/layout/Container";
 
 const socialIcons = {
@@ -58,9 +56,8 @@ export function HeroSection() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="max-w-4xl"
         >
-          <SectionBadge icon={Sparkles}>{siteData.hero.eyebrow}</SectionBadge>
-          <p className="mt-6 font-sans text-[12px] font-medium uppercase tracking-[0.18em] text-[#6b5638]">
-            {siteData.role}
+          <p className="font-sans text-[12px] font-medium uppercase tracking-[0.18em] text-[#6b5638]">
+            {siteData.heroEyebrow}
           </p>
           <h1
             id="home-heading"
@@ -72,7 +69,7 @@ export function HeroSection() {
             {siteData.tagline}
           </p>
           <p className="mt-4 max-w-[620px] text-[15px] leading-7 text-[#5a544c]">
-            {siteData.placeholderNote}
+            {siteData.heroSubTagline}
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
