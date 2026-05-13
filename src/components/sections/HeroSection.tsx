@@ -31,43 +31,24 @@ export function HeroSection() {
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-30 bg-[#02040a]"
+        className="absolute inset-0 -z-30 bg-[#faf7f0]"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-20 opacity-35"
+        className="absolute inset-0 -z-20"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
+            "linear-gradient(rgba(28,26,23,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(28,26,23,0.04) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
           maskImage: "radial-gradient(circle at 50% 28%, black 0%, transparent 68%)",
         }}
       />
-      <motion.div
+      <div
         aria-hidden="true"
-        className="absolute left-1/2 top-16 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-400/30 blur-3xl sm:h-96 sm:w-96"
-        animate={
-          reduceMotion
-            ? undefined
-            : {
-                scale: [1, 1.08, 0.98, 1],
-                opacity: [0.52, 0.72, 0.48, 0.52],
-              }
-        }
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        aria-hidden="true"
-        className="absolute right-[-9rem] top-24 -z-10 h-80 w-80 rounded-full bg-violet-500/20 blur-3xl sm:h-[28rem] sm:w-[28rem]"
-        animate={
-          reduceMotion
-            ? undefined
-            : {
-                x: [0, -18, 12, 0],
-                y: [0, 20, -10, 0],
-              }
-        }
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute -right-[10%] -top-[10%] -z-10 h-[600px] w-[600px] rounded-full opacity-60"
+        style={{
+          background: "radial-gradient(circle, #ebe4d3 0%, transparent 70%)",
+        }}
       />
 
       <Container className="grid items-center gap-12 lg:grid-cols-[1.04fr_0.72fr]">
@@ -78,19 +59,19 @@ export function HeroSection() {
           className="max-w-4xl"
         >
           <SectionBadge icon={Sparkles}>{siteData.hero.eyebrow}</SectionBadge>
-          <p className="mt-6 text-sm font-medium uppercase tracking-[0.28em] text-slate-400">
+          <p className="mt-6 text-[13px] font-medium uppercase tracking-[0.12em] text-[#6b5638]">
             {siteData.role}
           </p>
           <h1
             id="home-heading"
-            className="mt-5 max-w-5xl text-5xl font-semibold leading-[0.95] text-white sm:text-6xl lg:text-8xl"
+            className="mt-5 max-w-5xl font-serif text-[clamp(3.5rem,9vw,7.5rem)] font-normal italic leading-[1] tracking-[-0.01em] text-[#1c1a17]"
           >
             {siteData.hero.headline}
           </h1>
-          <p className="mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+          <p className="mt-7 max-w-[620px] text-[21px] leading-[1.5] text-[#1c1a17]">
             {siteData.tagline}
           </p>
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-400">
+          <p className="mt-4 max-w-[620px] text-[15px] leading-7 text-[#5a544c]">
             {siteData.placeholderNote}
           </p>
 
@@ -130,49 +111,60 @@ export function HeroSection() {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
           className="relative mx-auto w-full max-w-xl lg:ml-auto"
         >
-          <div className="absolute -inset-4 rounded-[2rem] bg-cyan-300/10 blur-2xl" />
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-2xl shadow-black/40 backdrop-blur-xl">
-            <div className="rounded-[1.35rem] border border-white/10 bg-slate-950/80 p-4">
-              <div className="flex items-center gap-2 border-b border-white/10 pb-4">
+          <div className="relative overflow-hidden rounded-2xl border border-[#2a2620] bg-[#1a1815] p-4 shadow-[0_20px_60px_-15px_rgba(28,26,23,0.25)]">
+            <div className="rounded-xl border border-[#2a2620] bg-[#1a1815] p-4">
+              <div className="flex items-center gap-2 border-b border-[#2a2620] pb-4">
                 <span className="size-3 rounded-full bg-red-400/80" />
                 <span className="size-3 rounded-full bg-amber-300/80" />
                 <span className="size-3 rounded-full bg-emerald-400/80" />
-                <span className="ml-3 text-xs font-medium text-slate-400">
+                <span className="ml-3 font-mono text-[12px] text-[#8a8278]">
                   portfolio-mvp.tsx
                 </span>
               </div>
-              <div className="space-y-4 py-5 font-mono text-xs leading-6 text-slate-300 sm:text-sm">
+              <div className="space-y-4 py-5 font-mono text-[13px] leading-6 text-[#e8e0d0]">
                 <p>
-                  <span className="text-cyan-300">const</span>{" "}
-                  <span className="text-white">contentMode</span>{" "}
-                  <span className="text-slate-500">=</span>{" "}
-                  <span className="text-emerald-300">&quot;placeholder-safe&quot;</span>;
+                  <span className="text-[#b8a989]">const</span>{" "}
+                  <span className="text-[#e8e0d0]">contentMode</span>{" "}
+                  <span className="text-[#8a8278]">=</span>{" "}
+                  <span className="text-[#c4985a]">&quot;placeholder-safe&quot;</span>;
                 </p>
                 <p>
-                  <span className="text-cyan-300">const</span>{" "}
-                  <span className="text-white">workflow</span>{" "}
-                  <span className="text-slate-500">=</span> [
-                  <span className="text-emerald-300">&quot;plan&quot;</span>,{" "}
-                  <span className="text-emerald-300">&quot;build&quot;</span>,{" "}
-                  <span className="text-emerald-300">&quot;test&quot;</span>,{" "}
-                  <span className="text-emerald-300">&quot;deploy&quot;</span>];
+                  <span className="text-[#b8a989]">const</span>{" "}
+                  <span className="text-[#e8e0d0]">workflow</span>{" "}
+                  <span className="text-[#8a8278]">=</span> [
+                  <span className="text-[#c4985a]">&quot;plan&quot;</span>,{" "}
+                  <span className="text-[#c4985a]">&quot;build&quot;</span>,{" "}
+                  <span className="text-[#c4985a]">&quot;test&quot;</span>,{" "}
+                  <span className="text-[#c4985a]">&quot;deploy&quot;</span>];
                 </p>
-                <p className="text-slate-500">
+                <p className="text-[#8a8278]">
                   {"// Verified project details will replace placeholders after review."}
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
-                <div className="rounded-2xl border border-cyan-300/15 bg-cyan-300/10 p-4">
-                  <p className="text-xs uppercase tracking-[0.22em] text-cyan-200">
+                <div
+                  className="rounded-xl border p-4"
+                  style={{
+                    borderColor: "rgba(232,224,208,0.1)",
+                    backgroundColor: "rgba(232,224,208,0.06)",
+                  }}
+                >
+                  <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#8a8278]">
                     Location
                   </p>
-                  <p className="mt-2 text-sm font-semibold text-white">{siteData.location}</p>
+                  <p className="mt-2 text-sm font-semibold text-[#e8e0d0]">{siteData.location}</p>
                 </div>
-                <div className="rounded-2xl border border-violet-300/15 bg-violet-300/10 p-4">
-                  <p className="text-xs uppercase tracking-[0.22em] text-violet-200">
+                <div
+                  className="rounded-xl border p-4"
+                  style={{
+                    borderColor: "rgba(232,224,208,0.1)",
+                    backgroundColor: "rgba(232,224,208,0.06)",
+                  }}
+                >
+                  <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#8a8278]">
                     Status
                   </p>
-                  <p className="mt-2 text-sm font-semibold text-white">
+                  <p className="mt-2 text-sm font-semibold text-[#e8e0d0]">
                     Portfolio in progress
                   </p>
                 </div>
