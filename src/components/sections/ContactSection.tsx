@@ -19,7 +19,7 @@ export function ContactSection() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="scroll-mt-24 py-24"
+      className="scroll-mt-24 py-24 lg:pt-32"
     >
       <Container>
         <motion.div
@@ -27,7 +27,7 @@ export function ContactSection() {
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.65, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-[2rem] bg-[#1c1a17] p-6 text-[#faf7f0] shadow-[0_30px_80px_-30px_rgba(28,26,23,0.35)] sm:p-10 lg:p-14"
+          className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-[#1c1a17] p-6 text-[#faf7f0] shadow-[0_30px_80px_-30px_rgba(28,26,23,0.35)] sm:p-10 lg:p-14"
         >
           <div className="relative grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-end">
             <div>
