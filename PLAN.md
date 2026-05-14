@@ -6,9 +6,9 @@
 
 ## STATUS
 
-- **Current phase:** Phase 2 complete. Ready for Phase 3 (hero component).
-- **Last completed:** Phase 2: branch redesign-scrollytelling created, GSAP installed (^3.15.0), PLAN.md committed, Vercel preview live.
-- **Next action:** Pavan provides the line-led headline copy direction for the hero, then Claude Code writes the pinned hero component (LBT-adapted scrub timeline).
+- **Current phase:** Phase 4 complete. Ready for Phase 5 (fixed UI overlays — progress bar + top nav + identity pill).
+- **Last completed:** Phase 4: About section ("ABOUT / NOTE 01") replaced the stub. Single-column centered layout, 3-paragraph body, GSAP scrub parallax on the section header (yPercent 0 → 40 over section traversal). Mobile / reduced-motion render static. `#who` anchor preserved for Phase 3 hero scrub.
+- **Next action:** Phase 5 — build the fixed UI overlays (top progress bar with teal→amber gradient, top nav that fades in after hero, identity pill bottom-left). Then Phase 4 continues with Skyways section (parallax #2).
 
 ---
 
@@ -203,3 +203,28 @@ Verification status:
 - Note on `gsap.to` vs `gsap.fromTo`: switched back to `gsap.to` per the hotfix spec ("the CSS already sets the start state"). The Phase 3 deviation #1 above flagged a concern that `gsap.to({yPercent:0})` could be a no-op against a stylesheet-set `transform: translateY(110%)` because GSAP doesn't always recover percent units from a computed matrix. If browser verification reveals the words don't actually stagger in, the minimal repair is one line: change `gsap.to(` back to `gsap.fromTo(` with `{ yPercent: 110 }` as the first argument and keep the rest identical.
 - Vercel preview: https://pavanrathod-portfolio-27n5k8htj-ipavan828s-projects.vercel.app (will redeploy from `31d1bf1`).
 - Repair: gsap.to → gsap.fromTo (Phase 3 deviation #1 was correct; my hotfix spec was wrong). Commit 7a0bb90.
+
+---
+
+## Phase 4 — About section ("ABOUT / NOTE 01") — May 13, 2026
+
+- Replaced `HeroAbout.tsx` stub with full section: parallax heading, 3-paragraph body, meta label
+- Mechanic: heading `yPercent: 0 → +40` scrub over section's viewport traversal (background feel — heading lags page)
+- Layout: single column, centered, prose max-width 62ch
+- Mobile / reduced-motion: static, no ScrollTrigger created (matchMedia gate `(min-width: 1024px) and (prefers-reduced-motion: no-preference)` — same gate as Hero)
+- `#who` anchor preserved on the root `<section>` element — Phase 3 hero scrub timeline still animates `.from('#who', ...)` against it
+- Last paragraph rendered in Fraunces italic for visual punchline (real italic glyphs per Phase 1 decision, not browser-synthesized)
+- CSS variables used: `--font-fraunces`, `--font-inter`, `--font-jetbrains-mono`, `--text`, `--muted`, `--muted-2`, `--line-strong`. Spec referenced `--font-display` and `--font-body` which don't exist in this project — mapped to `--font-fraunces` and `--font-inter` per the existing Phase 1 utility-class pattern. Spec explicitly authorized this adjustment.
+- Library discipline: GSAP + ScrollTrigger only. No motion library import in this file (Phase 4 spec called this out — it's one of the two scrub-tied sections; the other is Skyways later).
+
+Commits:
+- fb11ec9 feat(about): replace stub with full About section (Phase 4)
+- 309ad85 feat(about): add GSAP scrub parallax for section header
+- (this commit) chore(plan): log Phase 4 + bump status
+
+Verification (what I can run from here):
+- ✅ `npm run typecheck` clean
+- ✅ `npm run lint` clean
+- ✅ `npm run build` clean (4/4 static pages, no warnings)
+- ✅ `npm run dev` + curl: `GET / 200`, `#who` anchor present, all four `.about-*` classes rendered, 8 `word-inner` spans still present (no Phase 3 regression)
+- ⏳ Browser-runtime: hero pin + word stagger (regression check), About header parallax visible, < 1024px and reduced-motion fall back to static — all to be confirmed on Vercel preview by Pavan.
