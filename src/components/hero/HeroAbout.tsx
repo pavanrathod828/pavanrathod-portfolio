@@ -1,9 +1,52 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function HeroAbout() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const headerRef = useRef<HTMLHeadingElement | null>(null);
+
+  useEffect(() => {
+    const mm = window.matchMedia(
+      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)"
+    );
+    if (!mm.matches) return;
+
+    const section = sectionRef.current;
+    const header = headerRef.current;
+    if (!section || !header) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        header,
+        { yPercent: 0 },
+        {
+          yPercent: 40,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
       id="who"
+      ref={sectionRef}
       aria-labelledby="about-heading"
       className="about-section"
     >
@@ -13,7 +56,7 @@ export default function HeroAbout() {
         <span>NOTE 01</span>
       </div>
 
-      <h2 id="about-heading" className="about-heading">
+      <h2 id="about-heading" ref={headerRef} className="about-heading">
         About
       </h2>
 
