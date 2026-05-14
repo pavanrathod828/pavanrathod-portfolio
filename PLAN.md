@@ -228,3 +228,22 @@ Verification (what I can run from here):
 - ✅ `npm run build` clean (4/4 static pages, no warnings)
 - ✅ `npm run dev` + curl: `GET / 200`, `#who` anchor present, all four `.about-*` classes rendered, 8 `word-inner` spans still present (no Phase 3 regression)
 - ⏳ Browser-runtime: hero pin + word stagger (regression check), About header parallax visible, < 1024px and reduced-motion fall back to static — all to be confirmed on Vercel preview by Pavan.
+
+---
+
+## Hero `gsap.context` scope fix — May 13, 2026
+
+- **Symptom (Vercel preview):** hero headline invisible at scroll=0 — only the eyebrow rendered. DevTools console showed three GSAP errors: `Element not found: #hero-stage`, `GSAP target #who not found`, plus a third matching target-not-found. The word-reveal tween never effectively ran, so `.word-inner` stayed at the CSS-default `transform: translateY(110%)` and the 8 words sat clipped below their `.word` frames.
+- **Root cause:** `gsap.context(callback, stageRef)` in `src/components/hero/Hero.tsx` scoped every selector inside the callback to `stageRef.current.querySelectorAll(...)`. Two problems:
+  1. `#hero-stage` IS `stageRef.current` — not a descendant of itself. GSAP couldn't find it.
+  2. `#who` lives in a sibling component (`HeroAbout.tsx`) — it's the next `<section>` after `#hero-stage`, not inside it. Outside the scope entirely.
+  
+  The earlier word-reveal hotfix (`gsap.to` → `gsap.fromTo`) made the word stagger *appear* to work in some environments because GSAP can resolve `.word-inner` against the scope (those nodes ARE descendants of `stageRef`), but the broken scrub timeline meant the hero pin + parallax + about-rise never actually engaged. The hotfix masked the symptom on the words but left the scope bug latent.
+- **Fix:** dropped the second argument to `gsap.context` (commit `cee1e9c`). Selector strings now resolve at document level via `document.querySelectorAll`. `#hero-stage`, `#hero-pin`, `#hero-bg`, `#hero-content`, `#who`, and `.word-inner` all resolve correctly. `stageRef` and `ref={stageRef}` retained on the `<section>` — currently unused after the scope drop but left in place for future use.
+- **Latent-bug note:** this was a Phase 3 bug introduced when the scope argument was added; neither the original Phase 3 commit nor the two hotfixes caught it because the visible regression (invisible headline) only manifested once the production-build CSS load order on Vercel made the timing tight. Local dev hid it via slightly different stylesheet timing.
+
+Commits:
+- cee1e9c fix(hero): drop gsap.context scope so #hero-stage and #who resolve at document level
+- (this commit) chore(plan): log Hero gsap.context scope fix
+
+Verification: typecheck / lint / build clean. SSR returns `HTTP 200`, all 8 `<span class="word-inner">` spans render. Browser-runtime confirmation pending on Vercel preview.
