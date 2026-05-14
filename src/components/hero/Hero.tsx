@@ -54,7 +54,7 @@ export default function Hero() {
       );
 
       ScrollTrigger.refresh();
-    }, stageRef);
+    });
 
     return () => ctx.revert();
   }, []);
