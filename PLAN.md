@@ -194,3 +194,11 @@ Verification status:
 - ✅ `npm run build` clean (Next 16.2.6 + Turbopack, 4/4 static pages generated, no warnings)
 - ✅ `npm run dev` serves `GET / 200` with full SSR-rendered hero markup, all three font CSS variables wired up, no hydration warnings in the server log
 - ⏳ Browser-runtime verification (scroll the pin, watch the word stagger, console clean, resize to < 1024px, prefers-reduced-motion emulation) — must be done on the Vercel preview URL by Pavan; cannot run from this environment.
+
+### Phase 3 hotfix — May 13, 2026
+
+- Commit: 31d1bf1 phase 3 hotfix: word reveal fires on mount, not on 30% scroll
+- Issue: headline invisible on initial load — words were triggered at 30% scroll, but by that point the scrub timeline had already begun fading `#hero-content` out, so the headline never got a clean readable moment.
+- Fix: replaced the `ScrollTrigger.create({ start: "30% top", once: true, onEnter: () => gsap.fromTo(...) })` block with a plain `gsap.to(".word-inner", { yPercent: 0, duration: 0.9, stagger: 0.06, ease: "power3.out", delay: 0.2 })` called directly inside the existing `gsap.context` so it runs on mount. 0.2s delay keeps the words from competing with the initial paint. Mobile / reduced-motion still handled by the static CSS fallback (`.word-inner { transform: translateY(0) }`) — JS never runs in that branch.
+- Note on `gsap.to` vs `gsap.fromTo`: switched back to `gsap.to` per the hotfix spec ("the CSS already sets the start state"). The Phase 3 deviation #1 above flagged a concern that `gsap.to({yPercent:0})` could be a no-op against a stylesheet-set `transform: translateY(110%)` because GSAP doesn't always recover percent units from a computed matrix. If browser verification reveals the words don't actually stagger in, the minimal repair is one line: change `gsap.to(` back to `gsap.fromTo(` with `{ yPercent: 110 }` as the first argument and keep the rest identical.
+- Vercel preview: https://pavanrathod-portfolio-27n5k8htj-ipavan828s-projects.vercel.app (will redeploy from `31d1bf1`).
