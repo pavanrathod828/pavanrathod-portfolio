@@ -1,30 +1,74 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────────────────────
+   Design tokens — see docs/design-tokens.md (Phase 1, locked May 13)
+   Naming follows LBT bare-word convention. Dark canvas only.
+   ───────────────────────────────────────────────────────────── */
+
 :root {
-  --bg-base: #faf7f0;
-  --bg-soft: #ebe4d3;
-  --border-soft: #d9cfb5;
-  --border-strong: #b8a989;
-  --text-primary: #1c1a17;
-  --text-muted: #5a544c;
-  --text-faint: #8a8278;
-  --accent-bronze: #6b5638;
-  --accent-bronze-deep: #4a3a26;
-  --accent-amber: #c4985a;
-  --code-bg: #1a1815;
-  --code-fg: #e8e0d0;
-  --code-border: #2a2620;
-  --code-keyword: #b8a989;
-  --code-string: #c4985a;
-  color-scheme: light;
+  /* Surfaces */
+  --bg: #0a0a0a;
+  --ink: #1a1a1f;
+
+  /* Accents */
+  --teal: #2aa88a;
+  --teal-soft: #1a6b5c;
+  --amber: #f0a820;
+  --amber-soft: #d4860a;
+  --red: #e74c3c;
+
+  /* Text + lines (alpha on dark) */
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.55);
+  --muted-2: rgba(255, 255, 255, 0.35);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --overlay-glass: rgba(16, 16, 16, 0.72);
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Motion — durations */
+  --dur-fast: 200ms;
+  --dur-base: 400ms;
+  --dur-medium: 700ms;
+  --dur-long: 1100ms;
+
+  /* Motion — easings */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-entry: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+
+  /* Z-index layers */
+  --z-base: 0;
+  --z-section-bg: 1;
+  --z-section-fg: 2;
+  --z-section-accent: 3;
+  --z-section-top: 4;
+  --z-section-pinned-content: 10;
+  --z-top-nav: 100;
+  --z-identity-pill: 200;
+  --z-progress-bar: 9999;
+  --z-modal: 10000;
+
+  color-scheme: dark;
 }
 
 @theme inline {
-  --color-background: var(--bg-base);
-  --color-foreground: var(--text-primary);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-instrument-serif);
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-serif: var(--font-fraunces);
 }
 
 * {
@@ -32,39 +76,119 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  background: var(--bg-base);
+  background: var(--bg);
 }
 
 body {
-  background: var(--bg-base);
-  color: var(--text-primary);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-feature-settings: "ss01", "cv11";
   overflow-x: hidden;
 }
 
 ::selection {
-  background: #d9cfb5;
-  color: #1c1a17;
+  background: var(--teal);
+  color: var(--bg);
 }
 
 :focus-visible {
-  outline: 2px solid #1c1a17;
-  outline-offset: 2px;
-  border-radius: 4px;
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
+/* Phase 1 reduced-motion contract (docs/design-tokens.md §4.4) */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+    animation: none !important;
+    transition: none !important;
     scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Utility typography classes
+   ───────────────────────────────────────────────────────────── */
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-weight: 500;
+  font-size: clamp(0.68rem, 0.8vw, 0.78rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1;
+}
+
+.section-title {
+  font-family: var(--font-fraunces), serif;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--text);
+}
+
+.body-text {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 0.85rem + 0.3vw, 1.05rem);
+  line-height: 1.55;
+  color: var(--text);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Hero (Phase 3) — pinned scrub timeline
+   ───────────────────────────────────────────────────────────── */
+
+.hero-headline {
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(3rem, 8.5vw, 7rem);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  font-weight: 400;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.headline-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25em;
+  overflow: hidden;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+  line-height: inherit;
+}
+
+.word-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  will-change: transform;
+}
+
+/* Static fallback: when no animation will run, words sit in place
+   and the pin stage collapses so the layout doesn't reserve 150vh. */
+@media (max-width: 1023px), (prefers-reduced-motion: reduce) {
+  .word-inner {
+    transform: translateY(0);
+  }
+  #hero-stage {
+    height: auto !important;
+  }
+  #hero-pin {
+    height: auto !important;
+  }
+  #hero-content {
+    min-height: 100vh;
   }
 }
