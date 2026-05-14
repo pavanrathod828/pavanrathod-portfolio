@@ -247,3 +247,25 @@ Commits:
 - (this commit) chore(plan): log Hero gsap.context scope fix
 
 Verification: typecheck / lint / build clean. SSR returns `HTTP 200`, all 8 `<span class="word-inner">` spans render. Browser-runtime confirmation pending on Vercel preview.
+
+---
+
+## Hero diagnostic pass — May 13, 2026
+
+After the `gsap.context` scope fix deployed, Safari preview still showed the hero headline invisible at scroll=0 (only the eyebrow visible). Couldn't tell from a clean SSR check whether the bug was browser cache, a different runtime failure, or something else. This commit instruments the hero with diagnostics + a defensive reorder so the next browser test produces actionable data instead of silence.
+
+Changes (Hero.tsx useEffect body only — JSX, imports, refs untouched):
+- `[Hero] mount` log fires unconditionally before the matchMedia gate, with: matchMedia result, `window.innerWidth`, reduced-motion state, `.word-inner` count, presence of `#hero-stage` and `#who`.
+- Explicit log + early return when matchMedia gate fails (so we know the gate fired vs JS not running at all).
+- Explicit `console.error` + early return if `.word-inner` count is 0 at mount.
+- **Reordered inside `gsap.context`:** word reveal `gsap.fromTo` runs FIRST, scrub timeline second. The prior order put the scrub first, so any ScrollTrigger throw would abort before the word reveal could apply.
+- Added `gsap.set(".word-inner", { yPercent: 110 })` immediately before the fromTo — explicit start state, no longer relying on CSS to be the GSAP baseline.
+- Whole context callback wrapped in `try/catch` with `console.error` on failure.
+- `onStart` and `onComplete` callbacks on the word-reveal tween log to console — so we'll see "tween started" and "tween complete" if it runs to completion.
+- Final `[Hero] all animations registered` log inside the try block confirms reaching the end of setup.
+
+Commits:
+- fabd7a0 phase 4 debug: defensive hero useEffect + console diagnostics
+- (this commit) phase 4 debug: PLAN.md log for hero diagnostic pass
+
+Verification: `npx tsc --noEmit` clean, `npm run lint` clean, `npm run build` clean (4/4 static pages). Console.log calls don't trip the build. Browser console output to be checked on next Vercel preview load.
