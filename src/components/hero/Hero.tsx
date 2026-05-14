@@ -41,22 +41,12 @@ export default function Hero() {
         .to("#hero-bg", { scale: 1.12, ease: "none" }, 0)
         .from("#who", { y: 100, opacity: 0, ease: "none" }, 0);
 
-      ScrollTrigger.create({
-        trigger: "#hero-stage",
-        start: "30% top",
-        once: true,
-        onEnter: () => {
-          gsap.fromTo(
-            ".word-inner",
-            { yPercent: 110 },
-            {
-              yPercent: 0,
-              duration: 0.9,
-              stagger: 0.06,
-              ease: "power3.out",
-            }
-          );
-        },
+      gsap.to(".word-inner", {
+        yPercent: 0,
+        duration: 0.9,
+        stagger: 0.06,
+        ease: "power3.out",
+        delay: 0.2,
       });
 
       ScrollTrigger.refresh();
