@@ -163,3 +163,34 @@ Append a one-liner each session so future-you can see the path.
 - **May 13, 2026** — Phase 1 done. docs/design-tokens.md written and locked after one revision round (letter-spacing, line-height, ease-entry curve corrected to match LBT exactly). Commit c1b5ffd.
 - **May 13, 2026** — Phase 2 done. Branch redesign-scrollytelling created from main, GSAP ^3.15.0 installed, no Lenis, motion lib confirmed at ^12.38.0, PLAN.md imported to repo root. Commits f11a4e1, 5b7749e. Vercel preview confirmed building cleanly on every commit.
 - **___** — _(next session)_
+
+---
+
+## Phase 3 — May 13, 2026
+
+Commits:
+- a22cac4 phase 3 prep: sync design tokens into globals.css (full dark palette + spacing/motion/z-index tokens, font swap to Fraunces/Inter/JetBrains Mono, body bg → `var(--bg)`, viewport themeColor → `#0a0a0a`, reduced-motion block matched to spec)
+- e24abb8 phase 3: pinned hero with GSAP scrub timeline + About stub
+
+Files:
+- Created src/components/hero/Hero.tsx (pinned hero, GSAP ScrollTrigger scrub timeline, word reveal at 30%, matchMedia gate at ≥ 1024px + prefers-reduced-motion: no-preference)
+- Created src/components/hero/HeroAbout.tsx (stub `#who` section for Phase 4)
+- Modified src/app/page.tsx (mounted `<Hero />` + `<HeroAbout />`, commented out HeroSection, AboutSection, ProjectsSection, SkillsSection, ProcessSection, ContactSection, Header, Footer + their imports — all marked with Phase 4+ / Phase 5 TODO comments)
+- Modified src/app/globals.css (Phase 1 token wiring + `.eyebrow`, `.section-title`, `.body-text` utility classes + `.hero-headline`, `.headline-line`, `.word`, `.word-inner` hero classes + static fallback `@media (max-width: 1023px), (prefers-reduced-motion: reduce)`)
+- Modified src/app/layout.tsx (Geist/Geist_Mono/Instrument_Serif → Fraunces (axes: opsz, style: normal+italic) / Inter / JetBrains_Mono; skip-link restyled with amber-on-bg)
+
+Headline locked: "Software for the people who actually use it."
+Vercel preview: https://pavanrathod-portfolio-27n5k8htj-ipavan828s-projects.vercel.app (will redeploy from latest commit on this branch automatically)
+
+Deviations from spec:
+1. **Word reveal animation: `gsap.fromTo` instead of `gsap.to`.** The spec wrote `gsap.to(".word-inner", { yPercent: 0, ... })` paired with CSS `transform: translateY(110%)`. That combination doesn't reliably animate — GSAP doesn't auto-initialize its internal `yPercent` tracking from a CSS `translateY(%)` value, so `to({ yPercent: 0 })` starts from yPercent 0 (default) and animates to 0 (no-op), leaving words stuck at translateY(110%). Fix: `gsap.fromTo(".word-inner", { yPercent: 110 }, { yPercent: 0, duration: 0.9, stagger: 0.06, ease: "power3.out" })`. Same visual outcome, technically correct. CSS `translateY(110%)` retained as pre-mount placeholder so words are hidden before hydration.
+2. **layout.tsx Fraunces config omits `weight` array.** Next.js `next/font/google` rejects combining `axes` with an explicit `weight` array — "Axes can only be defined for variable fonts when the weight property is nonexistent or set to `variable`." Omitting `weight` makes Next request the full variable font, which already covers 300–700 + opsz via the variable axes. End result matches design-tokens.md spec ("300/400/500/600/700, opsz axis 9..144").
+3. **Commented out Header + Footer in addition to the 6 sections.** Spec said comment out "every other section that currently exists in page.tsx" — strictly the 6 inner sections — but Header/Footer use warm-palette inline-arbitrary Tailwind values and would render visibly broken on the dark canvas. Phase 5 in PLAN.md rebuilds them. Page now renders pure `<Hero />` + `<HeroAbout />` on dark.
+4. **Hardcoded headline + eyebrow copy in Hero.tsx**, violating `CLAUDE.md`'s "Content lives in `src/data/site.ts`" rule. Phase 3 spec was explicit about the locked strings and inline structure. Phase 4 can lift them into site.ts if the convention wins.
+
+Verification status:
+- ✅ `npm run typecheck` clean (tsc --noEmit, zero errors)
+- ✅ `npm run lint` clean (eslint, zero warnings)
+- ✅ `npm run build` clean (Next 16.2.6 + Turbopack, 4/4 static pages generated, no warnings)
+- ✅ `npm run dev` serves `GET / 200` with full SSR-rendered hero markup, all three font CSS variables wired up, no hydration warnings in the server log
+- ⏳ Browser-runtime verification (scroll the pin, watch the word stagger, console clean, resize to < 1024px, prefers-reduced-motion emulation) — must be done on the Vercel preview URL by Pavan; cannot run from this environment.
