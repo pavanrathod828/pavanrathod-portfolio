@@ -46,20 +46,7 @@ Notes for Claude Code working on this repo. Read `AGENTS.md` first for the non-n
 
 Dark palette defined in docs/design-tokens.md (Phase 1, locked May 13). This file supersedes the old warm palette for the redesign-scrollytelling branch.
 
-### Typography
-
-- **Body / nav / buttons / chips:** Geist Sans (`--font-geist-sans`), weight 400–600.
-- **h1 hero "Pavan Rathod":** Instrument Serif (`font-serif`), **italic**, weight 400, `clamp(56px, 9vw, 120px)`, `letter-spacing: -0.01em`, `line-height: 1`.
-- **h2 section headings:** Instrument Serif (`font-serif`), **roman**, weight 400, `clamp(36px, 5vw, 64px)`, `letter-spacing: -0.015em`.
-- **h3 and smaller:** Geist Sans, weight 500–600.
-- **Code window text:** Geist Mono (`font-mono`), only inside the hero code window.
-
-### Rules
-
-- Use the tokens above, not arbitrary hex. New colors require a token + a reason.
-- The **hero code window stays dark on purpose** — it's the only dark surface besides the contact CTA panel.
-- The contact CTA panel inverts to dark (`#1c1a17` + `#faf7f0` text) to create rhythm against the bone page.
-- Don't reintroduce cyan/violet glow effects — the dark-mode design has been replaced.
+Typography and visual rules for the redesign-scrollytelling branch are defined in docs/design-tokens.md (Phase 1, locked May 13). This file supersedes any prior typography or visual rules in CLAUDE.md.
 
 ## Before finishing a task
 
