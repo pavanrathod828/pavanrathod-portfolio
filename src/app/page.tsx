@@ -40,7 +40,7 @@ export default function Home() {
         <ContactSection hasResume={hasResume} />
       </main>
 
-      <SiteFooter hasResume={hasResume} />
+      <SiteFooter />
     </>
   );
 }

@@ -43,12 +43,13 @@ export default function NowSection() {
 
       <div className="now-strip">
         <p className="now-strip-line" data-reveal>
-          <span className="now-strip-label">STACK</span> · TYPESCRIPT ·
-          NEXT.JS · REACT · PYTHON · FLASK · REST APIs · AWS
+          <span className="now-strip-label">STACK</span>
+          {" · "}TYPESCRIPT{" · "}NEXT.JS{" · "}REACT{" · "}PYTHON
+          {" · "}FLASK{" · "}REST APIs{" · "}AWS
         </p>
         <p className="now-strip-line" data-reveal>
-          <span className="now-strip-label">CREDENTIALS</span> · CSULB
-          PRESIDENT&apos;S HONOR LIST · CS + FINANCE
+          <span className="now-strip-label">CREDENTIALS</span>
+          {" · "}CSULB PRESIDENT&apos;S HONOR LIST{" · "}CS + FINANCE
         </p>
       </div>
     </section>
