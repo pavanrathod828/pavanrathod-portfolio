@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
@@ -21,7 +20,6 @@ export default function SkywaysSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const headerRef = useRef<HTMLHeadingElement | null>(null);
   const reducedMotion = useReducedMotion();
-  const [imageFailed, setImageFailed] = useState(false);
 
   useIsoLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -78,49 +76,32 @@ export default function SkywaysSection() {
         <span>PROJECT 01</span>
       </div>
 
+      <motion.p className="skyways-spec" {...fadeIn}>
+        MARKETING SITE · DIRECT BOOKING · LIVE
+      </motion.p>
+
       <h2 id="skyways-heading" ref={headerRef} className="skyways-heading">
-        Skyways
+        <em>Skyways</em>
       </h2>
 
       <div className="skyways-body">
         <motion.p {...fadeIn}>
           An independent hotel half a mile from LAX, competing against the
           chains and dependent on booking aggregators that took a commission on
-          every reservation. It had no presence it actually owned.
+          every reservation — with no presence it actually owned.
         </motion.p>
         <motion.p {...fadeIn}>
-          The decision was to build a fast marketing site whose single job is
-          turning a search into a direct booking — no aggregator in the middle.
-          Most of the work was restraint: every section pointed at the booking
-          flow, nothing decorative left in the way.
-        </motion.p>
-        <motion.p {...fadeIn}>
-          The result is a live site the hotel owns — honest about what it
-          offers, fast, and pointed at one action.
+          The decision was a fast marketing site with one job: turn a search
+          into a direct booking, no aggregator in the middle. Most of the work
+          was restraint — every section pointed at the booking flow, nothing
+          decorative left in the way. The result is a live site the hotel
+          owns, honest about what it offers and pointed at one action.
         </motion.p>
       </div>
 
       <motion.p className="skyways-punchline" {...fadeIn}>
         A booking the hotel actually keeps.
       </motion.p>
-
-      <motion.figure className="skyways-shot" {...fadeIn}>
-        {imageFailed ? (
-          <div className="skyways-shot-fallback">
-            Skyways Hotel — live site
-          </div>
-        ) : (
-          <Image
-            src="/skyways/skyways-live.jpg"
-            alt="Screenshot of the live Skyways Hotel website"
-            width={1600}
-            height={1000}
-            sizes="(max-width: 880px) 100vw, 880px"
-            className="skyways-shot-img"
-            onError={() => setImageFailed(true)}
-          />
-        )}
-      </motion.figure>
 
       <motion.a
         href="https://skyways-hotel.vercel.app"
