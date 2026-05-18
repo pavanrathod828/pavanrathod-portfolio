@@ -1,54 +1,46 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
+
 import Hero from "@/components/hero/Hero";
 import HeroAbout from "@/components/hero/HeroAbout";
 import NowSection from "@/components/now/NowSection";
 import SkywaysSection from "@/components/skyways/SkywaysSection";
 import PortfolioSection from "@/components/portfolio/PortfolioSection";
 import LbtSection from "@/components/lbt/LbtSection";
+import ContactSection from "@/components/contact/ContactSection";
+import SiteNav from "@/components/chrome/SiteNav";
+import SiteFooter from "@/components/chrome/SiteFooter";
 
-// TODO Phase 4+: rebuild these for dark palette + scrollytelling
+// TODO Phase 8+: rebuild these for dark palette + scrollytelling
 // import { AboutSection } from "@/components/sections/AboutSection";
-// import { ContactSection } from "@/components/sections/ContactSection";
+// import { ContactSection as LegacyContactSection } from "@/components/sections/ContactSection";
 // import { HeroSection } from "@/components/sections/HeroSection";
 // import { ProcessSection } from "@/components/sections/ProcessSection";
 // import { ProjectsSection } from "@/components/sections/ProjectsSection";
 // import { SkillsSection } from "@/components/sections/SkillsSection";
-// TODO Phase 5: redesigned top nav + identity pill replace these
 // import { Header } from "@/components/layout/Header";
 // import { Footer } from "@/components/layout/Footer";
 
+// Build-time check: only render Resume links when /public/resume.pdf exists.
+// If the file is added later, a re-deploy picks it up with no code change.
+const hasResume = existsSync(path.join(process.cwd(), "public", "resume.pdf"));
+
 export default function Home() {
   return (
-    <main id="main" className="relative">
-      <Hero />
-      <HeroAbout />
-      <NowSection />
-      <SkywaysSection />
-      <PortfolioSection />
-      <LbtSection />
+    <>
+      <SiteNav hasResume={hasResume} />
 
-      {/* TODO Phase 5: rebuild Header for dark palette + scrollytelling */}
-      {/* <Header /> */}
+      <main id="main" className="relative">
+        <Hero />
+        <HeroAbout />
+        <NowSection />
+        <SkywaysSection />
+        <PortfolioSection />
+        <LbtSection />
+        <ContactSection hasResume={hasResume} />
+      </main>
 
-      {/* TODO Phase 4+: rebuild HeroSection (legacy) for dark palette + scrollytelling */}
-      {/* <HeroSection /> */}
-
-      {/* TODO Phase 4+: rebuild AboutSection for dark palette + scrollytelling */}
-      {/* <AboutSection /> */}
-
-      {/* TODO Phase 4+: rebuild ProjectsSection for dark palette + scrollytelling */}
-      {/* <ProjectsSection /> */}
-
-      {/* TODO Phase 4+: rebuild SkillsSection for dark palette + scrollytelling */}
-      {/* <SkillsSection /> */}
-
-      {/* TODO Phase 4+: rebuild ProcessSection for dark palette + scrollytelling */}
-      {/* <ProcessSection /> */}
-
-      {/* TODO Phase 4+: rebuild ContactSection for dark palette + scrollytelling */}
-      {/* <ContactSection /> */}
-
-      {/* TODO Phase 5: rebuild Footer for dark palette + scrollytelling */}
-      {/* <Footer /> */}
-    </main>
+      <SiteFooter hasResume={hasResume} />
+    </>
   );
 }
