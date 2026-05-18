@@ -1,5 +1,6 @@
 import Hero from "@/components/hero/Hero";
 import HeroAbout from "@/components/hero/HeroAbout";
+import NowSection from "@/components/now/NowSection";
 import SkywaysSection from "@/components/skyways/SkywaysSection";
 import PortfolioSection from "@/components/portfolio/PortfolioSection";
 import LbtSection from "@/components/lbt/LbtSection";
@@ -20,6 +21,7 @@ export default function Home() {
     <main id="main" className="relative">
       <Hero />
       <HeroAbout />
+      <NowSection />
       <SkywaysSection />
       <PortfolioSection />
       <LbtSection />
