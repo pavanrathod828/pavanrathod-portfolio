@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
@@ -21,6 +21,7 @@ export default function SkywaysSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const headerRef = useRef<HTMLHeadingElement | null>(null);
   const reducedMotion = useReducedMotion();
+  const [imageFailed, setImageFailed] = useState(false);
 
   useIsoLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -94,8 +95,8 @@ export default function SkywaysSection() {
           flow, nothing decorative left in the way.
         </motion.p>
         <motion.p {...fadeIn}>
-          The result is a live site the hotel owns — honest about what the
-          place is, fast, and pointed at one action.
+          The result is a live site the hotel owns — honest about what it
+          offers, fast, and pointed at one action.
         </motion.p>
       </div>
 
@@ -104,14 +105,21 @@ export default function SkywaysSection() {
       </motion.p>
 
       <motion.figure className="skyways-shot" {...fadeIn}>
-        <Image
-          src="/skyways/skyways-live.jpg"
-          alt="Screenshot of the live Skyways Hotel website"
-          width={1600}
-          height={1000}
-          sizes="(max-width: 960px) 100vw, 960px"
-          className="skyways-shot-img"
-        />
+        {imageFailed ? (
+          <div className="skyways-shot-fallback">
+            Skyways Hotel — live site
+          </div>
+        ) : (
+          <Image
+            src="/skyways/skyways-live.jpg"
+            alt="Screenshot of the live Skyways Hotel website"
+            width={1600}
+            height={1000}
+            sizes="(max-width: 880px) 100vw, 880px"
+            className="skyways-shot-img"
+            onError={() => setImageFailed(true)}
+          />
+        )}
       </motion.figure>
 
       <motion.a
