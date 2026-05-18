@@ -1,5 +1,6 @@
 import Hero from "@/components/hero/Hero";
 import HeroAbout from "@/components/hero/HeroAbout";
+import SkywaysSection from "@/components/skyways/SkywaysSection";
 
 // TODO Phase 4+: rebuild these for dark palette + scrollytelling
 // import { AboutSection } from "@/components/sections/AboutSection";
@@ -17,6 +18,7 @@ export default function Home() {
     <main id="main" className="relative">
       <Hero />
       <HeroAbout />
+      <SkywaysSection />
 
       {/* TODO Phase 5: rebuild Header for dark palette + scrollytelling */}
       {/* <Header /> */}
