@@ -6,9 +6,9 @@
 
 ## STATUS
 
-- **Current phase:** Phase 6 revision complete. Three project sections tightened: figures cut, copy trimmed to 2 paragraphs each, new mono spec line under the meta label, bolder typographic accents (alternating teal/amber italic title word + accent-color punchline), top hairline divider per section, tighter vertical spacing.
-- **Last completed:** Phase 6 revision: removed figures from Skyways, Portfolio, LBT (and all `next/image` imports + `imageFailed` state + `.skyways-shot*` / `.project-shot*` CSS). Added mono spec line to each (`MARKETING SITE · DIRECT BOOKING · LIVE`, `NEXT.JS 16 · TYPESCRIPT · TAILWIND V4 · WCAG AA`, `ENGR 350 · TRANSIT PRIVACY ETHICS · LIVE`). Body copy cut from 3 paragraphs to 2 per spec. Title clamp bumped from `clamp(2.4rem, 5.5vw, 4.8rem)` to `clamp(2.8rem, 6.5vw, 4.8rem)` so titles push toward the high end of the existing scale. Title italic accents: `<em>Skyways</em>` teal, `<em>always</em>` amber, `<em>anonymously</em>` teal. Punchlines colored to match. Each project section gets a `border-top: 1px solid var(--line-strong)` hairline. Padding tightened from 8rem→6rem desktop / 5rem→4rem mobile, gap from 4rem→2.5rem desktop / 2.5rem→1.75rem mobile.
-- **Next action:** verify the revised sections on the preview (italic accents render in the right colors, spec lines read correctly under the meta labels, hairlines visible between sections, vertical rhythm feels right). Then move to Phase 7: re-enable the legacy `<Footer />` with dark-token migration, plus a contact/CTA block.
+- **Current phase:** Phase 7 complete. The "Now" section is built and mounted between HeroAbout and Skyways. Current role at HypeOn (SF) + mono stack/credentials strip. Final section order is Hero → Who → Now → Skyways → Portfolio → LBT.
+- **Last completed:** Phase 7 — `src/components/now/NowSection.tsx` created and wired into `page.tsx`. Mirrors the Phase-6-revision project pattern (meta label, mono spec line, italic-accent title, body, italic punchline) and adds a two-line mono stack/credentials strip at the close. Amber accent on `<em>HypeOn</em>` + matching amber punchline. Same SSR-safe `useSectionReveal` hook. New `.now-*` CSS family parallel to `.project-*` with `.now-strip*` for the closing strip. PHASE PLAN updated to reflect that Skills + Process sections are intentionally cut (Skills replaced by stack strip, Process dropped); Phase 8 = site chrome (Header/nav, Contact, Footer); Phase 9 = pre-merge parity audit + merge to main.
+- **Next action:** verify the Now section on the Vercel preview (content reads right, amber accents on HypeOn + punchline, stack/credentials strip groups visually, 7-target reveal cascade fires on desktop, static on mobile). Confirm the hero pin, HeroAbout parallax, and Skyways header scrub all still behave correctly with the new section inserted between Who and Skyways. Then move to Phase 8: site chrome.
 
 ---
 
@@ -53,71 +53,50 @@ These don't need answers now. Each phase will surface them when they matter.
 
 ## PHASE PLAN
 
+> Updated 2026-05-18. The original Phase-0 plan called for Skills, Process, fixed UI overlays, and a mobile-pass phase. Implementation diverged — Skills got replaced by the Now section's stack strip, Process was cut, the scrub-budget closed at 3 (hero pin + About parallax + Skyways header), mobile/reduced-motion handling is baked into every section's `matchMedia` gate rather than being its own pass. The list below is the actual roadmap going forward.
+
 ### Phase 0 — Read & decide ✅ DONE
-Read the reference HTML, understand patterns, lock strategic decisions. No code.
+LBT reference read end-to-end, locked decisions table written, no code.
 
-### Phase 1 — Design tokens (next)
-**Deliverable:** a written spec doc (no code) covering:
-- Final palette with hex values and intended usage (bg, surface, accent, text)
-- Type scale (sizes, weights, line-heights for hero/section/body/meta)
-- Spacing scale
-- Motion rules: durations, easings, what scrubs vs. fires-once, reduced-motion fallbacks
-- Z-index layers (progress bar, identity pill, content)
+### Phase 1 — Design tokens ✅ DONE
+`docs/design-tokens.md` written + locked after one revision round (letter-spacing, line-height, ease-entry curve corrected to match LBT exactly). Commits: c1b5ffd.
 
-**Pavan does:** read, push back on anything that feels off, approve.
+### Phase 2 — Branch + dependencies ✅ DONE
+`redesign-scrollytelling` branch created, GSAP installed (^3.15.0), motion ^12.38.0 confirmed, no Lenis, PLAN.md + CLAUDE.md cleaned of warm-palette contradictions. Vercel preview live. Commits: f11a4e1, 5b7749e, 87b02b1, 795c253, dde1e7d, d08b6db.
 
-### Phase 2 — Branch + dependencies
-- `git checkout -b redesign-scrollytelling`
-- `npm install gsap` (motion stays — covers section reveals; GSAP for hero scrub + parallax only)
-- Confirm no Lenis dependency anywhere
-- Set up Vercel preview deploys for this branch
+### Phase 3 — Hero (pinned + word stagger) ✅ DONE
+GSAP ScrollTrigger pin (~150vh), `.from('#who')` rise, word-by-word reveal on hero headline. Includes the SSR-safe visibility fix (CSS-default visible, `useIsoLayoutEffect` hides + reveals pre-paint, catch fallback resets to visible). Commits: a22cac4, e24abb8, 4167d18, 31d1bf1, 3d3bbbe, 7a0bb90, 21a822f, cee1e9c, 2554fa0, fabd7a0, 5d3973d, 23edb8e, 400b16e.
 
-**Pavan does:** run the commands or have Claude write them. Push the empty branch so the preview URL exists.
+### Phase 4 — About / "Who" ✅ DONE
+HeroAbout replaced with parallax-scrub heading, three-paragraph observational body, italic Fraunces punchline. `#who` anchor preserved (Phase 3 hero scrub references it). Commits: fb11ec9, 309ad85, 68bbee5.
 
-### Phase 3 — Hero
-The big deliverable. Translates LBT's pinned hero-to-question scrub into a portfolio hero.
+### Phase 5 — Skyways (anchor project) ✅ DONE
+Text-led, header scrub parallax (3rd and final scrub budget), graceful figure fallback (later removed in Phase 6 revision), teal live link to https://skyways-hotel.vercel.app. Commits: fd72d20, d0a5c3e, 69cb845, 5000c93.
 
-- Pinned section (~150vh)
-- Hero layer: eyebrow + line-led headline + subtitle + author block + scroll cue
-- Outgoing scrub: hero content blurs out, background scales/parallaxes
-- Incoming scrub: section 2 (About/Who) rises from below
-- Word-by-word reveal on the headline fires once at ~30% scroll (not scrubbed — matches LBT)
-- Reduced-motion fallback: static layout, all elements visible immediately
+### Phase 6 — Project sections (Portfolio + LBT) ✅ DONE
+Two new sections after Skyways. Introduced `src/lib/useSectionReveal.ts` — SSR-safe motion-library imperative reveal hook. Phase 6 revision (2026-05-18): cut figures from all three project sections, trimmed copy to 2 paragraphs, added mono spec lines, bumped title clamp, alternating teal/amber italic title accents + matching punchline color, top hairlines, tighter spacing. Commits: 4307fd9, 0548095, a93f2a1, 8f9ffc3.
 
-**Pavan does:** review locally, then on Vercel preview. This is the hardest piece — expect 2 sessions.
+### Phase 7 — Now section + stack/credentials strip ✅ DONE
+`NowSection.tsx` mounted between HeroAbout and Skyways. Current role at HypeOn (Software Engineer Intern, SF), one-paragraph body, italic Fraunces punchline, two-line mono stack/credentials strip at the close. Amber title accent on "HypeOn" + amber punchline. Skills section is intentionally cut from the redesign — the stack strip replaces it. Commits: 98e21a0.
 
-### Phase 4 — Sections (one at a time)
-In order:
-1. **Who** — light section, considered voice, credentials + location
-2. **Skyways** (anchor, deepest) — setup, what they needed, decisions made, what was learned
-3. **pavanrathod.com** (this site, recursive) — design choices, why dark, why scrollytelling
-4. **LBT** — links out to live presentation
-5. **VidSnapAI** — only if it earns its place (decision in Phase 4)
-6. **How I work** — process/methodology, scroll-revealed
-7. **Open to** — what you're seeking
-8. **Contact** — closing with strong type
+### Phase 8 — Site chrome (next)
+Re-enable / rebuild the surrounding UI for the dark redesign:
+- Header / top nav — appears after the hero unpins, dark-token palette, dot + name + meta treatment, no progress bar or timer (those were presentation-specific to LBT and ruled out).
+- Contact block — minimal closing CTA after LBT section. Single email link + LinkedIn + GitHub. Same observational voice, no form, no aggregation widgets.
+- Footer — slim, dark-token, year + light credit line. Replaces the commented-out legacy Footer from Phase 3 page.tsx surgery.
 
-Each section ships independently. Don't try to do them all in one session.
+**Cut from the original Phase 0 plan** (deliberately, do not re-introduce):
+- Skills section — replaced by the Now stack strip. The full skills-icon-soup grid added noise without proof.
+- Process / "How I work" section — dropped. The body copy already shows process implicitly (restraint, accessibility-first, AI-paired-but-reviewed); a dedicated section would be redundant.
+- Fixed UI overlays (progress bar, identity pill, timer) — out of scope. The scrub-budget is closed and the page reads cleanly without persistent UI chrome.
+- Mobile / reduced-motion as a discrete phase — already done per-section via `matchMedia` gates.
 
-### Phase 5 — Fixed UI overlays
-- Top progress bar (teal → amber gradient like LBT)
-- Top nav (appears after hero, has dot + name + meta)
-- Identity pill (bottom-left, your version — not LBT logo)
-- **No timer** (that's presentation-specific)
-
-### Phase 6 — Mobile + reduced-motion
-- Static layout, no pinning, no scrub
-- All content visible without animation
-- Verify on actual iPhone (recruiters open links on phones first)
-
-### Phase 7 — Vercel preview review
-- Final desktop pass
-- Final mobile pass
-- Lighthouse / accessibility audit
-- Real-content check (no placeholder copy anywhere)
-
-### Phase 8 — Merge to main
-**Only on explicit "merge it" from Pavan.** Squash-merge to `main`, Vercel auto-deploys to pavanrathod.com.
+### Phase 9 — Pre-merge parity audit + merge to main
+- Full desktop pass on the Vercel preview, top to bottom.
+- Full mobile pass on real iPhone (recruiters open links on phones first).
+- Lighthouse / accessibility audit (keyboard nav, focus rings, color contrast on every section, alt text where applicable).
+- Real-content audit — every visible string is final, no placeholder copy anywhere.
+- Squash-merge to `main` **only on explicit "merge it" from Pavan**. Vercel auto-deploys to pavanrathod.com on green main.
 
 ---
 
@@ -302,3 +281,17 @@ Verification: `npx tsc --noEmit` clean, `npm run lint` clean, `npm run build` cl
 - a93f2a1 refactor(phase6): tighten project sections, cut figures, bolder accent treatment. Net −101 lines across 4 files. **Figures cut everywhere** — `<motion.figure>` / `<figure data-reveal>` markup removed from all three sections, along with their `next/image` imports, `useState(imageFailed)` calls, `/public/skyways/...` `/public/portfolio/...` `/public/lbt/...` references, and the `.skyways-shot` / `.skyways-shot-img` / `.skyways-shot-fallback` / `.project-shot` / `.project-shot-img` / `.project-shot-fallback` CSS rules. No dangling refs in components or stylesheet (grep verified). **Spec lines added** — new mono technical-metadata line directly under each meta label and above each title: Skyways `MARKETING SITE · DIRECT BOOKING · LIVE`, Portfolio `NEXT.JS 16 · TYPESCRIPT · TAILWIND V4 · WCAG AA`, LBT `ENGR 350 · TRANSIT PRIVACY ETHICS · LIVE`. CSS class `.skyways-spec` (Skyways) and `.project-spec` (Portfolio + LBT shared) — meta-token sizing, `--muted` color, 0.16em tracking, uppercase, centered. **Body copy trimmed** from 3 paragraphs to 2 per section, exactly matching the spec text. Reveal targets dropped from 8 to 7 per section. **Title clamp bumped** from `clamp(2.4rem, 5.5vw, 4.8rem)` to `clamp(2.8rem, 6.5vw, 4.8rem)` (higher floor, steeper viewport ramp, same ceiling) — pushes titles toward the top of the existing scale without inventing a new one. **Italic-word accents** added: `<em>Skyways</em>` colored `var(--teal)`, `#portfolio .project-heading em` colored `var(--amber)`, `#lbt .project-heading em` colored `var(--teal)`. The Skyways title was previously plain; whole word italicized since it's a single-word title and "the most concrete noun" per the spec. **Punchlines accented** to match each section's title color (teal/amber/teal). **Top hairline added**: `border-top: 1px solid var(--line-strong)` on `.skyways-section` and `.project-section` — creates visible structure between sections now that the figures are gone. **Spacing tightened**: desktop padding 8rem→6rem, gap 4rem→2.5rem; mobile padding 5rem→4rem, gap 2.5rem→1.75rem. About section untouched (still at 8rem/4rem). All other locked invariants preserved: useSectionReveal hook unchanged, SSR-safe contract intact, no GSAP/scrub added (Skyways' existing header scrub stays), motion-library enter-once reveals intact, mobile reduced-motion behavior unchanged, meta labels and punchline phrases unchanged, live links unchanged.
 
 Verification: typecheck/lint/build green. Dev SSR returns HTTP 200 (~28.8KB, down from 33KB after removing the figures), all three `<em>` accents present in markup (`<em>Skyways</em>`, `<em>always</em>`, `<em>anonymously</em>`), all three spec lines rendered, zero `<img>`/`<figure>`/`*-shot` matches in HTML.
+
+---
+
+## Phase 7 — Now section (HypeOn role) + stack/credentials strip — May 18, 2026
+
+- 98e21a0 feat(phase7): add Now section (HypeOn role) + stack/credentials strip. New component `src/components/now/NowSection.tsx` mounted in `page.tsx` between `<HeroAbout />` and `<SkywaysSection />`. Final section order: Hero → Who → Now → Skyways → Portfolio → LBT.
+- **Content (exact)**: meta label `NOW / 2026`, mono spec line `SOFTWARE ENGINEER INTERN · SAN FRANCISCO`, Fraunces title `Currently at <em>HypeOn</em>.`, one-paragraph Inter body about HypeOn (AI-powered e-commerce intelligence in SF, what Pavan does there), italic Fraunces punchline `No more localhost. Real users now.`, two-line mono closing strip: `STACK · TYPESCRIPT · NEXT.JS · REACT · PYTHON · FLASK · REST APIs · AWS` / `CREDENTIALS · CSULB PRESIDENT'S HONOR LIST · CS + FINANCE`. Leading word in each strip line wrapped in `<strong className="now-strip-label">` colored `--muted` for slight emphasis above the `--muted-2` items.
+- **Architecture**: mirrors the Phase-6-revision Portfolio/LBT pattern exactly. Plain HTML in JSX (no `<motion.X>`), reveal via `useSectionReveal` hook + `data-reveal` attributes (7 targets: meta, spec, title, body, punchline, stack-line, credentials-line). SSR-safe — content visible by default in CSS, no inline `opacity:0` in server HTML, the hook hides + reveals just-in-time on ≥1024px + no-reduced-motion only. **No GSAP, no ScrollTrigger** — scrub budget remains fully spent at the locked 3 (hero pin + About parallax + Skyways header).
+- **Accents**: `<em>HypeOn</em>` colored `var(--amber)` via `.now-heading em` rule. Punchline colored `var(--amber)` to match. Visual rhythm across the four "work" sections is now teal (Skyways) → amber (Portfolio) → teal (LBT) → amber (Now) — wait, Now sits before the project sections, so the sequence as you scroll is: Now (amber) → Skyways (teal) → Portfolio (amber) → LBT (teal). Clean teal/amber alternation top-to-bottom.
+- **CSS additions**: new `.now-*` family parallel to `.project-*` (heading, body, spec, punchline, meta, meta-divider, strip, strip-line, strip-label). Same vertical rhythm as Phase 6 revision (6rem desktop padding, 2.5rem gap; 4rem / 1.75rem mobile). Strip wrapper uses its own `gap: 0.4rem` so the two strip lines visually group tighter than the rest of the section. Strip type sized at `clamp(0.62rem, 0.72vw, 0.72rem)` — slightly smaller than the spec line. Strip items in `--muted-2`, strip labels (`STACK`, `CREDENTIALS`) in `--muted` for the brighter-leading-word effect the spec called for.
+- **PHASE PLAN section in PLAN.md rewritten** to reflect actual roadmap. Phases 0–7 marked done with commit references. Phase 8 = site chrome (header/nav, contact block, footer — replaces the commented-out legacy Header/Footer from Phase 3). Phase 9 = pre-merge parity audit then squash-merge to main. Skills section explicitly cut (replaced by the Now stack strip), Process section cut (redundant given the body copy already shows process), fixed UI overlays (progress bar, identity pill, timer) cut as out of scope, mobile-pass cut as already-handled per-section.
+- **Scroll machinery untouched**: hero pin, hero scrub timeline, `#who` anchor on HeroAbout, HeroAbout header parallax, Skyways header scrub — all preserved exactly. Inserting the new section between HeroAbout and Skyways shifts the layout but doesn't disturb any GSAP triggers, since each ScrollTrigger is anchored on its own section element by ID.
+
+Verification: `npx tsc --noEmit` clean, `npm run lint` clean, `npm run build` clean (4/4 static pages, no warnings). Dev SSR returns HTTP 200 at ~30.6KB (up ~1.8KB from the Phase 6 revision baseline for the Now content). `#now` section present in HTML, `<em>HypeOn</em>` accent rendered, all 6 distinct content strings rendered (meta, spec, body opener, punchline, both strip labels), total `data-reveal` attribute count across the page = 21 (7 each in Now + Portfolio + LBT, 0 in Skyways which still uses the `<motion.p whileInView>` pattern), zero inline `opacity:0` on any `data-reveal` element. Section order in HTML: hero-stage → who → now → skyways → portfolio → lbt.
