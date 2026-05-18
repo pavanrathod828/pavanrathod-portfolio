@@ -43,7 +43,7 @@ export default function ContactSection({ hasResume }: ContactSectionProps) {
           <ArrowUpRight className="contact-link-icon" aria-hidden="true" />
         </a>
         <a
-          href="https://www.linkedin.com/in/pavan-rathod-64b0b7254/"
+          href="https://www.linkedin.com/in/pavanrathod828"
           target="_blank"
           rel="noopener noreferrer"
           className="contact-link"

@@ -62,7 +62,7 @@ export const siteData = {
   name: "Pavan Rathod",
   email: "pavanrwork@gmail.com",
   location: "Torrance, CA",
-  linkedin: "https://www.linkedin.com/in/pavan-rathod-64b0b7254/",
+  linkedin: "https://www.linkedin.com/in/pavanrathod828",
   github: "https://github.com/pavanrathod828",
   resumeUrl: "/resume.pdf",
   tagline:
@@ -89,7 +89,7 @@ export const siteData = {
     },
     {
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/pavan-rathod-64b0b7254/",
+      href: "https://www.linkedin.com/in/pavanrathod828",
       isPlaceholder: false,
     },
     {
@@ -237,7 +237,7 @@ export const siteData = {
       { label: "Email", href: "mailto:pavanrwork@gmail.com" },
       {
         label: "LinkedIn",
-        href: "https://www.linkedin.com/in/pavan-rathod-64b0b7254/",
+        href: "https://www.linkedin.com/in/pavanrathod828",
       },
       { label: "GitHub", href: "https://github.com/pavanrathod828" },
     ] as const,
