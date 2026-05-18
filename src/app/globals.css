@@ -172,16 +172,15 @@ body {
 
 .word-inner {
   display: inline-block;
-  transform: translateY(110%);
+  transform: translateY(0);
   will-change: transform;
 }
 
-/* Static fallback: when no animation will run, words sit in place
-   and the pin stage collapses so the layout doesn't reserve 150vh. */
+/* Static fallback: when no animation will run, the pin stage collapses
+   so the layout doesn't reserve 150vh of empty space. Word visibility
+   is handled by the default .word-inner rule above (visible by default;
+   GSAP hides + reveals just-in-time as a progressive enhancement). */
 @media (max-width: 1023px), (prefers-reduced-motion: reduce) {
-  .word-inner {
-    transform: translateY(0);
-  }
   #hero-stage {
     height: auto !important;
   }

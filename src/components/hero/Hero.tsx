@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const useIsoLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 const HEADLINE_LINE_1 = ["Software", "for", "the", "people"];
 const HEADLINE_LINE_2 = ["who", "actually", "use", "it."];
@@ -13,7 +16,7 @@ const HEADLINE_TEXT = "Software for the people who actually use it.";
 export default function Hero() {
   const stageRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     if (typeof window === "undefined") return;
 
     const mm = window.matchMedia(
@@ -83,6 +86,7 @@ export default function Hero() {
         console.log("[Hero] all animations registered");
       } catch (err) {
         console.error("[Hero] error during animation setup:", err);
+        gsap.set(".word-inner", { yPercent: 0 });
       }
     });
 
