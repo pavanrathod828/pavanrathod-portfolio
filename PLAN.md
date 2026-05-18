@@ -269,3 +269,9 @@ Commits:
 - (this commit) phase 4 debug: PLAN.md log for hero diagnostic pass
 
 Verification: `npx tsc --noEmit` clean, `npm run lint` clean, `npm run build` clean (4/4 static pages). Console.log calls don't trip the build. Browser console output to be checked on next Vercel preview load.
+
+---
+
+## Hero visibility architecture fix — May 17, 2026
+
+- 23edb8e fix(hero): make word reveal a progressive enhancement — headline visible by default, revert-safe. New HEAD on `redesign-scrollytelling`. CSS default for `.word-inner` flipped to `translateY(0)` (visible); GSAP hides + reveals just-in-time via `useIsoLayoutEffect` (synchronous pre-paint set). Catch block now falls back to `gsap.set(".word-inner", { yPercent: 0 })` so any setup exception still leaves the headline readable. The `.word-inner` override inside the `(max-width: 1023px), (prefers-reduced-motion: reduce)` media query was removed (redundant now); the `#hero-stage` / `#hero-pin` / `#hero-content` layout-collapse rules in the same block were kept (still load-bearing for mobile/reduced-motion to avoid 50vh of dead space below the hero).
