@@ -7,6 +7,12 @@ import { motion, useInView, useReducedMotion } from "motion/react";
 // §8), this does NOT depict any HypeOn-specific system, product UI, internal
 // architecture, or metric — it's a textbook-style diagram of the category of
 // work (data points → central transform → organized outputs).
+//
+// Entrance: three deliberate waves, ~1150ms total.
+//   Wave 1 (0 → 350ms):     24 input rects appear
+//   Wave 2 (350 → 750ms):   converging lines draw + central circle pops
+//   Wave 3 (750 → 1150ms):  diverging lines draw + output bars appear
+// Triggered once on viewport entry. Reduced-motion snaps to final state.
 
 const INPUT_COLS = 4;
 const INPUT_ROWS = 6;
@@ -42,100 +48,168 @@ const outputs = Array.from({ length: OUTPUT_COUNT }).map((_, i) => ({
   y: OUTPUT_Y,
 }));
 
-const item = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { duration: 0.1, ease: "easeOut" as const } },
+const convergeRows = Array.from({ length: INPUT_ROWS });
+
+const EASE = "easeOut" as const;
+
+const wave1 = {
+  hidden: { opacity: 0, y: 8 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35, ease: EASE, delay: 0 },
+  },
 };
 
-const container = {
+const wave2Group = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.01 } },
+  show: {
+    transition: { delayChildren: 0.35 },
+  },
+};
+
+const wave2Line = {
+  hidden: { pathLength: 0, opacity: 0 },
+  show: {
+    pathLength: 1,
+    opacity: 1,
+    transition: { duration: 0.4, ease: EASE },
+  },
+};
+
+const wave2Circle = {
+  hidden: { opacity: 0, scale: 0.85 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.4, ease: EASE },
+  },
+};
+
+const wave3Group = {
+  hidden: {},
+  show: {
+    transition: { delayChildren: 0.75 },
+  },
+};
+
+const wave3Line = {
+  hidden: { pathLength: 0, opacity: 0 },
+  show: {
+    pathLength: 1,
+    opacity: 1,
+    transition: { duration: 0.4, ease: EASE },
+  },
+};
+
+const wave3Rect = {
+  hidden: { opacity: 0, y: 4 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: EASE },
+  },
 };
 
 export default function HypeOnVisual() {
   const ref = useRef<SVGSVGElement | null>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, amount: 0.3 });
   const reduce = useReducedMotion();
 
   const animate = reduce || inView ? "show" : "hidden";
   const initial = reduce ? "show" : "hidden";
 
   return (
-    <motion.svg
+    <svg
       ref={ref}
       viewBox="0 0 600 240"
       role="img"
       aria-label="Abstract diagram: a grid of data points converging into a central node and fanning out into organized outputs."
       className="hypeon-visual"
-      variants={container}
-      initial={initial}
-      animate={animate}
     >
-      {/* Static connecting lines — render once, no per-element animation */}
-      {Array.from({ length: INPUT_ROWS }).map((_, row) => {
-        const sourceY = INPUT_Y + row * INPUT_GAP_Y + INPUT_H / 2;
-        return (
-          <line
-            key={`conv-${row}`}
-            x1={INPUT_X + (INPUT_COLS - 1) * INPUT_GAP_X + INPUT_W}
-            y1={sourceY}
-            x2={CENTER_X - CENTER_R}
-            y2={CENTER_Y}
+      {/* Wave 1: 24 input rectangles, animated as a single group (slide + fade) */}
+      <motion.g
+        variants={wave1}
+        initial={initial}
+        animate={animate}
+      >
+        {inputs.map((p, i) => (
+          <rect
+            key={`in-${i}`}
+            x={p.x}
+            y={p.y}
+            width={INPUT_W}
+            height={INPUT_H}
+            rx={1}
+            fill="var(--line)"
+          />
+        ))}
+      </motion.g>
+
+      {/* Wave 2: converging lines + central circle (delay 350ms) */}
+      <motion.g
+        variants={wave2Group}
+        initial={initial}
+        animate={animate}
+      >
+        {convergeRows.map((_, row) => {
+          const sourceY = INPUT_Y + row * INPUT_GAP_Y + INPUT_H / 2;
+          return (
+            <motion.line
+              key={`conv-${row}`}
+              x1={INPUT_X + (INPUT_COLS - 1) * INPUT_GAP_X + INPUT_W}
+              y1={sourceY}
+              x2={CENTER_X - CENTER_R}
+              y2={CENTER_Y}
+              stroke="var(--line-strong)"
+              strokeWidth="1.5"
+              variants={wave2Line}
+            />
+          );
+        })}
+        <motion.circle
+          cx={CENTER_X}
+          cy={CENTER_Y}
+          r={CENTER_R}
+          stroke="var(--teal)"
+          strokeWidth="1.5"
+          fill="none"
+          variants={wave2Circle}
+          style={{ transformOrigin: `${CENTER_X}px ${CENTER_Y}px`, transformBox: "fill-box" }}
+        />
+      </motion.g>
+
+      {/* Wave 3: diverging lines + output bars (delay 750ms) */}
+      <motion.g
+        variants={wave3Group}
+        initial={initial}
+        animate={animate}
+      >
+        {outputs.map((o, i) => (
+          <motion.line
+            key={`div-${i}`}
+            x1={CENTER_X + CENTER_R}
+            y1={CENTER_Y}
+            x2={o.x + OUTPUT_W / 2}
+            y2={o.y}
             stroke="var(--line-strong)"
             strokeWidth="1.5"
+            variants={wave3Line}
           />
-        );
-      })}
-      {outputs.map((o, i) => (
-        <line
-          key={`div-${i}`}
-          x1={CENTER_X + CENTER_R}
-          y1={CENTER_Y}
-          x2={o.x + OUTPUT_W / 2}
-          y2={o.y}
-          stroke="var(--line-strong)"
-          strokeWidth="1.5"
-        />
-      ))}
-
-      {/* Animated: input grid */}
-      {inputs.map((p, i) => (
-        <motion.rect
-          key={`in-${i}`}
-          x={p.x}
-          y={p.y}
-          width={INPUT_W}
-          height={INPUT_H}
-          rx={1}
-          fill="var(--line)"
-          variants={item}
-        />
-      ))}
-
-      {/* Animated: central node */}
-      <motion.circle
-        cx={CENTER_X}
-        cy={CENTER_Y}
-        r={CENTER_R}
-        stroke="var(--teal)"
-        strokeWidth="1.5"
-        fill="none"
-        variants={item}
-      />
-
-      {/* Animated: output bars */}
-      {outputs.map((o, i) => (
-        <motion.rect
-          key={`out-${i}`}
-          x={o.x}
-          y={o.y}
-          width={OUTPUT_W}
-          height={OUTPUT_H}
-          rx={1}
-          fill="var(--line-strong)"
-          variants={item}
-        />
-      ))}
-    </motion.svg>
+        ))}
+        {outputs.map((o, i) => (
+          <motion.rect
+            key={`out-${i}`}
+            x={o.x}
+            y={o.y}
+            width={OUTPUT_W}
+            height={OUTPUT_H}
+            rx={1}
+            fill="var(--line-strong)"
+            variants={wave3Rect}
+          />
+        ))}
+      </motion.g>
+    </svg>
   );
 }
