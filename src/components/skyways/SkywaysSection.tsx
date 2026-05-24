@@ -65,7 +65,7 @@ export default function SkywaysSection() {
       <div className="skyways-meta" aria-hidden="true" data-reveal>
         <span>WORK</span>
         <span className="skyways-meta-divider">/</span>
-        <span>PROJECT 01</span>
+        <span>PROJECT 03</span>
       </div>
 
       <p className="skyways-spec" data-reveal>

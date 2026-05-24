@@ -432,24 +432,6 @@ body {
   font-style: italic;
 }
 
-/* Per-section title accent — alternating teal/amber/teal */
-#portfolio .project-heading em {
-  color: var(--amber);
-}
-
-#lbt .project-heading em {
-  color: var(--teal);
-}
-
-/* Per-section punchline accent — matches the title accent */
-#portfolio .project-punchline {
-  color: var(--amber);
-}
-
-#lbt .project-punchline {
-  color: var(--teal);
-}
-
 .project-body {
   max-width: 62ch;
   display: flex;

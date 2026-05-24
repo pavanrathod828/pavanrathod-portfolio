@@ -4,9 +4,9 @@ import path from "node:path";
 import Hero from "@/components/hero/Hero";
 import HeroAbout from "@/components/hero/HeroAbout";
 import NowSection from "@/components/now/NowSection";
+import HypeOnSection from "@/components/hypeon/HypeOnSection";
+import MlProjectSection from "@/components/ml/MlProjectSection";
 import SkywaysSection from "@/components/skyways/SkywaysSection";
-import PortfolioSection from "@/components/portfolio/PortfolioSection";
-import LbtSection from "@/components/lbt/LbtSection";
 import ContactSection from "@/components/contact/ContactSection";
 import SiteNav from "@/components/chrome/SiteNav";
 import SiteFooter from "@/components/chrome/SiteFooter";
@@ -33,9 +33,9 @@ export default function Home() {
         <Hero />
         <HeroAbout />
         <NowSection />
+        <HypeOnSection />
+        <MlProjectSection />
         <SkywaysSection />
-        <PortfolioSection />
-        <LbtSection />
         <ContactSection hasResume={hasResume} />
       </main>
 

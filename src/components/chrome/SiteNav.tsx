@@ -49,7 +49,7 @@ export default function SiteNav({ hasResume }: SiteNavProps) {
   const links: NavLink[] = [
     { href: "#who", label: "About" },
     { href: "#now", label: "Now" },
-    { href: "#skyways", label: "Work" },
+    { href: "#hypeon", label: "Work" },
     { href: "#contact", label: "Contact" },
   ];
 
