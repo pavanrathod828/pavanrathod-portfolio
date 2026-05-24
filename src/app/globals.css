@@ -142,7 +142,7 @@ body {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Hero (Phase 3) — pinned scrub timeline
+   Hero — headline typography
    ───────────────────────────────────────────────────────────── */
 
 .hero-headline {
@@ -155,25 +155,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0;
-}
-
-.headline-line {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25em;
-  overflow: hidden;
-}
-
-.word {
-  display: inline-block;
-  overflow: hidden;
-  line-height: inherit;
-}
-
-.word-inner {
-  display: inline-block;
-  transform: translateY(0);
-  will-change: transform;
 }
 
 /* ─────────────────────────────────────────────────────────────

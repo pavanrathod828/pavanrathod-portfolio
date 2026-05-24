@@ -65,7 +65,7 @@ export default function SiteNav({ hasResume }: SiteNavProps) {
       aria-label="Primary"
     >
       <div className="site-nav-inner">
-        <a href="#hero-stage" className="site-nav-wordmark">
+        <a href="#hero" className="site-nav-wordmark">
           Pavan Rathod
         </a>
 
