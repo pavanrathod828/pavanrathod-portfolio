@@ -1,21 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import type { ReactNode } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
 import { useSectionReveal } from "@/lib/useSectionReveal";
 
-interface HypeOnSectionProps {
-  codeBlock?: ReactNode;
-}
-
-export default function HypeOnSection({ codeBlock }: HypeOnSectionProps) {
+export default function HypeOnSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const visualRef = useRef<HTMLDivElement | null>(null);
-  const inView = useInView(visualRef, { once: true, amount: 0.3 });
-  const reduce = useReducedMotion();
-  const active = reduce || inView;
-
   useSectionReveal(sectionRef);
 
   return (
@@ -46,18 +35,6 @@ export default function HypeOnSection({ codeBlock }: HypeOnSectionProps) {
         &apos;s products. A deeper writeup of one system is in progress — see
         the case study link below.
       </p>
-
-      {codeBlock && (
-        <motion.div
-          ref={visualRef}
-          className="hypeon-code-wrap"
-          initial={reduce ? false : { opacity: 0, y: 8 }}
-          animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-          transition={reduce ? { duration: 0 } : { duration: 0.5, ease: "easeOut" as const }}
-        >
-          {codeBlock}
-        </motion.div>
-      )}
 
       <a href="/work/hypeon" className="hypeon-cta" data-reveal>
         Read the case study →

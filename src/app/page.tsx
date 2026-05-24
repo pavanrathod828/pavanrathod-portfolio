@@ -5,9 +5,7 @@ import Hero from "@/components/hero/Hero";
 import HeroAbout from "@/components/hero/HeroAbout";
 import NowSection from "@/components/now/NowSection";
 import HypeOnSection from "@/components/hypeon/HypeOnSection";
-import HypeOnCodeBlock from "@/components/hypeon/HypeOnCodeBlock";
 import MlProjectSection from "@/components/ml/MlProjectSection";
-import MlEvalBlock from "@/components/ml/MlEvalBlock";
 import SkywaysSection from "@/components/skyways/SkywaysSection";
 import ContactSection from "@/components/contact/ContactSection";
 import SiteNav from "@/components/chrome/SiteNav";
@@ -26,8 +24,8 @@ export default function Home() {
         <Hero />
         <HeroAbout />
         <NowSection hasResume={hasResume} />
-        <HypeOnSection codeBlock={<HypeOnCodeBlock />} />
-        <MlProjectSection codeBlock={<MlEvalBlock />} />
+        <HypeOnSection />
+        <MlProjectSection />
         <SkywaysSection />
         <ContactSection hasResume={hasResume} />
       </main>
