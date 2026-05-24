@@ -15,7 +15,6 @@ import SiteFooter from "@/components/chrome/SiteFooter";
 // import { AboutSection } from "@/components/sections/AboutSection";
 // import { ContactSection as LegacyContactSection } from "@/components/sections/ContactSection";
 // import { HeroSection } from "@/components/sections/HeroSection";
-// import { ProcessSection } from "@/components/sections/ProcessSection";
 // import { ProjectsSection } from "@/components/sections/ProjectsSection";
 // import { SkillsSection } from "@/components/sections/SkillsSection";
 // import { Header } from "@/components/layout/Header";

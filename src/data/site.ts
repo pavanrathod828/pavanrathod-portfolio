@@ -48,11 +48,6 @@ export type AboutFeature = {
   body: string;
 };
 
-export type ProcessStep = {
-  title: string;
-  body: string;
-};
-
 export type ContactButton = {
   label: string;
   href: string;
@@ -86,7 +81,6 @@ export const siteData = {
     { label: "About", href: "#about" },
     { label: "Projects", href: "#projects" },
     { label: "Skills", href: "#skills" },
-    { label: "Process", href: "#process" },
     { label: "Contact", href: "#contact" },
   ] as const,
   socialLinks: [
@@ -211,30 +205,6 @@ export const siteData = {
       "A working stack across frontend, backend, cloud, and AI tooling.",
     description:
       "Depth varies by area — frontend and Python/Flask are strongest, AWS and Stripe are growing through current projects.",
-  },
-  process: {
-    badge: "AI Workflow",
-    headline:
-      "Responsible AI-assisted development, with human review in the loop.",
-    body: "I use AI tools the way I use any tool — to plan more clearly, ship faster, and catch mistakes earlier. Every line of generated code is reviewed before it gets committed. Here's how I actually work.",
-    steps: [
-      {
-        title: "Plan",
-        body: "Use Claude and ChatGPT to think through requirements, edge cases, and architecture before writing code. Document decisions in markdown.",
-      },
-      {
-        title: "Build",
-        body: "Pair with Claude Code or Codex inside VS Code for implementation. Write typed, reviewable code in small commits.",
-      },
-      {
-        title: "Test",
-        body: "Run lint, build, type checks, and manual review at every phase boundary. Fix what's broken before moving forward.",
-      },
-      {
-        title: "Ship",
-        body: "Deploy via Vercel from GitHub. Smoke test the live build. Monitor and iterate based on real use.",
-      },
-    ],
   },
   contact: {
     badge: "Contact",
