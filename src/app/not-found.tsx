@@ -1,23 +1,16 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "HypeOn case study — Pavan Rathod",
-  description:
-    "Software Engineer Intern at HypeOn AI — case study in progress.",
-};
-
-export default function HypeOnPage() {
+export default function NotFound() {
   return (
     <main
       id="main"
       className="min-h-[80vh] px-6 py-24 md:px-12 md:py-32"
     >
       <div className="mx-auto flex w-full max-w-[720px] flex-col gap-8">
-        <h1 className="section-title">HypeOn — case study</h1>
+        <h1 className="section-title">Not here.</h1>
 
         <p className="body-text text-[color:var(--muted)]">
-          In progress. Publishing once internal review clears.
+          This page hasn&apos;t been built yet — or it never was.
         </p>
 
         <Link
