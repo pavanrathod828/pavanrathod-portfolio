@@ -26,16 +26,13 @@ const jetbrainsMono = JetBrains_Mono({
 
 const siteUrl = "https://pavanrathod.com";
 const siteName = "Pavan Rathod";
-const siteTitle = "Pavan Rathod — Software Engineer";
+const siteTitle = "Pavan Rathod";
 const siteDescription =
-  "CS student at CSULB building Next.js and Python applications, including a hotel booking platform and AI-powered tools. Seeking Summer 2026 and 2027 SWE internships.";
+  "Software Engineer Intern at HypeOn AI. Open to Summer 2027 SWE internships. Applying to MS CS (AI/ML) for Fall 2028.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: siteTitle,
-    template: "Pavan Rathod | %s",
-  },
+  title: siteTitle,
   description: siteDescription,
   applicationName: siteName,
   authors: [{ name: "Pavan Rathod" }],
@@ -47,13 +44,16 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
     locale: "en_US",
-    images: ["/og.png"],
+    // TODO(week-8): generate public/og-image.png at 1200x630.
+    // Fraunces headline ("Pavan Rathod" or similar) on bg #0a0a0a,
+    // teal accent, name + role line. Do not auto-generate.
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: ["/og.png"],
+    images: ["/og-image.png"],
   },
   icons: {
     icon: [

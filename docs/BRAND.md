@@ -195,7 +195,10 @@ Direct • Confident • Technical • Warm • Curious • Pragmatic • Unders
 ### Professional
 - **Role:** Founding Engineer, HypeOn AI (hypeon.ai)
 - **Company context:** Bootstrapped, pre-seed, AI Copilot for D2C brands. Products: Ad Intelligence, ROAS Attribution, Review Intelligence, GEO Demand Mapping. Backed by Google Cloud, OpenAI, AWS, Nvidia. Growing EU customer base.
-- **Specific shippable work I can talk about:** `[FILL — list 3–5 concrete things you've shipped or owned at HypeOn. Be specific. "Built the X pipeline that does Y for Z customers." This list directly becomes your experience bullets.]`
+- **Specific shippable work I can talk about:** `[PARTIAL — Next.js ad details TBD]`
+  - Skills I'm using at HypeOn: RAG, retrieval, attribution math, ad tech
+  - One sanctioned public artifact: Next.js ad (details pending, see PORTFOLIO_PLAN.md §6 Week 3)
+  - Stack: Python, Flask, REST, SQL (verified)
 
 ### Education
 - BS Computer Science, CSULB, Spring 2028 (in progress)

@@ -97,7 +97,7 @@ Full spec: see `docs/decisions/001-hero.md`.
 ## 4) Project Curation
 
 ### Keep
-- **HypeOn case study** *(new, `/work/hypeon`)* — anonymized as needed. One shipped system, stack, your specific contribution, 3 real metrics.
+- **HypeOn skills + artifact page** *(`/work/hypeon`)* — per cofounder boundary (May 2026): skills, stack, and one sanctioned public artifact (Next.js ad). No internal architecture or metrics. Page replaces "case study" framing.
 - **Skyways Hotel** — only once it ships (May 2026) with live URL. Until then, demote to one-liner under "Current builds."
 
 ### Cut from featured
@@ -169,12 +169,13 @@ Time budget: ~10-15 hrs/week of nights + weekends.
 - [ ] Fix `NowSection.tsx` title.
 - [ ] Reconcile `src/data/site.ts` with rendered components (or formally deprecate).
 
-### Week 3 — HypeOn Case Study (6-8 hrs)
+### Week 3 — HypeOn skills + artifact page (4-6 hrs)
 
-- [ ] Draft 500-800 word case study at `/work/hypeon`. Structure: problem → what you shipped → stack → 3 metrics → 1 anti-pattern → what's next.
-- [ ] Run draft past HypeOn cofounders for IP / NDA / anonymization sign-off. **Do not publish until sign-off.**
-- [ ] Add architecture diagram (Excalidraw or mermaid). One image, no more.
-- [ ] Link from hero and `NowSection`.
+- Draft 400-600 word skills + learnings page at /work/hypeon
+- Sections: skills I'm using (RAG, retrieval, attribution, ad tech), stack, what I'm learning, one public artifact (Next.js ad — pending public-URL confirmation from Pavan)
+- DO NOT include architecture diagram
+- DO NOT include internal metrics
+- Link from hero and NowSection (already wired in stub)
 
 ### Week 4 — Ship the AI/ML Repo (10-12 hrs)
 
@@ -261,7 +262,7 @@ The Finance minor surfaces in hero eyebrow (`CS + FINANCE`) so quant audience se
 
 ## 8) Risks & Tripwires
 
-- **HypeOn case study without cofounder sign-off.** Single biggest IP/NDA risk. Get written approval before publish.
+- **HypeOn skills + artifact page** — boundary established May 2026 (Yash): skills/stack/learnings OK, no internal IP, Next.js ad sanctioned. Risk now: drifting back into case-study-with-metrics framing. Re-read §4 before publishing.
 - **Site refresh becomes the procrastination.** If at Week 4 the AI/ML repo isn't started, drop site work for 2 weeks and ship the repo.
 - **Faculty cold-emails go unanswered.** Send 7, expect 2-3 to respond. If zero by Week 4, escalate.
 - **GEO Demand Atlas idea seduces you back.** 400-hour project in 150-hour budget. Postpone to summer 2026 or skip.
@@ -305,5 +306,5 @@ If any of (1)-(5) is missing by Week 8, plan is failing. Rebudget and cut Field 
 
 ---
 
-*Last updated: 2026-05-23*
+*Last updated: 2026-05-24*
 *Owner: Pavan Rathod*
