@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { AnimatedGradientText } from "@/components/hero/AnimatedGradientText";
 import { Button } from "@/components/ui/Button";
 import { siteData } from "@/data/site";
@@ -38,17 +39,15 @@ export default function Hero() {
         </div>
 
         <div className="order-1 mx-auto self-center md:order-2 md:mx-0 md:self-start">
-          <div
-            role="img"
-            aria-label={heroIntro.photoAlt}
-            className="flex size-24 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--line-strong)] md:size-[200px]"
-          >
-            <span
-              aria-hidden="true"
-              className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted-2)]"
-            >
-              Photo
-            </span>
+          <div className="relative size-24 overflow-hidden rounded-full border border-[color:var(--line)] md:size-[200px]">
+            <Image
+              src="/pavan-headshot.jpg"
+              alt={heroIntro.photoAlt}
+              fill
+              sizes="(min-width: 768px) 200px, 96px"
+              priority
+              className="object-cover"
+            />
           </div>
         </div>
       </div>

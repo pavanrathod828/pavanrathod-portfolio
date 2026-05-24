@@ -85,7 +85,7 @@ export const siteData = {
       label: "View on GitHub",
       href: "https://github.com/pavanrathod828",
     },
-    photoAlt: "Photo placeholder — headshot pending",
+    photoAlt: "Pavan Rathod, Software Engineer Intern at HypeOn AI.",
   },
   navItems: [
     { label: "Home", href: "#home" },
