@@ -1,3 +1,19 @@
+## Source of Truth (read before any change)
+
+Before making any change to copy, layout, structure, or component behavior, read:
+- `docs/BRAND.md` — positioning, voice, target audiences, anti-patterns
+- `docs/PORTFOLIO_PLAN.md` — execution roadmap and information architecture
+- `docs/decisions/` — specific component decisions, numbered in order (001, 002, ...)
+
+Rules:
+1. If a user request conflicts with these documents, stop and ask before proceeding.
+2. Do not improvise copy. All hero, project, and section copy is decided in `docs/decisions/`.
+3. Do not deviate from a decision document's spec without explicit user approval.
+4. If a decision document is ambiguous on a layout detail, ask before guessing.
+5. Decision documents are append-only in spirit — never edit `docs/decisions/001-*.md` after it ships unless the user explicitly approves a revision (and even then, prefer creating a new numbered decision that supersedes it).
+
+Strategy and copy decisions are made in the Claude.ai Project, not here. Your job is implementation.
+
 # CLAUDE.md
 
 Notes for Claude Code working on this repo. Read `AGENTS.md` first for the non-negotiable rules; this file is the tighter operational guide.
