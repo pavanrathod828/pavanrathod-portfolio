@@ -1,27 +1,36 @@
-import { AboutSection } from "@/components/sections/AboutSection";
-import { ContactSection } from "@/components/sections/ContactSection";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { ProcessSection } from "@/components/sections/ProcessSection";
-import { ProjectsSection } from "@/components/sections/ProjectsSection";
-import { SkillsSection } from "@/components/sections/SkillsSection";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { existsSync } from "node:fs";
+import path from "node:path";
+
+import Hero from "@/components/hero/Hero";
+import HeroAbout from "@/components/hero/HeroAbout";
+import NowSection from "@/components/now/NowSection";
+import HypeOnSection from "@/components/hypeon/HypeOnSection";
+import MlProjectSection from "@/components/ml/MlProjectSection";
+import SkywaysSection from "@/components/skyways/SkywaysSection";
+import ContactSection from "@/components/contact/ContactSection";
+import SiteNav from "@/components/chrome/SiteNav";
+import SiteFooter from "@/components/chrome/SiteFooter";
+
+// Build-time check: only render Resume links when /public/resume.pdf exists.
+// If the file is added later, a re-deploy picks it up with no code change.
+const hasResume = existsSync(path.join(process.cwd(), "public", "resume.pdf"));
 
 export default function Home() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#faf7f0] text-[#1c1a17]">
-      <Header />
+    <>
+      <SiteNav hasResume={hasResume} />
 
-      <main id="main">
-        <HeroSection />
-        <AboutSection />
-        <ProjectsSection />
-        <SkillsSection />
-        <ProcessSection />
-        <ContactSection />
+      <main id="main" className="relative">
+        <Hero />
+        <HeroAbout />
+        <NowSection hasResume={hasResume} />
+        <HypeOnSection />
+        <MlProjectSection />
+        <SkywaysSection />
+        <ContactSection hasResume={hasResume} />
       </main>
 
-      <Footer />
-    </div>
+      <SiteFooter />
+    </>
   );
 }

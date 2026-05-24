@@ -1,3 +1,19 @@
+## Source of Truth (read before any change)
+
+Before making any change to copy, layout, structure, or component behavior, read:
+- `docs/BRAND.md` — positioning, voice, target audiences, anti-patterns
+- `docs/PORTFOLIO_PLAN.md` — execution roadmap and information architecture
+- `docs/decisions/` — specific component decisions, numbered in order (001, 002, ...)
+
+Rules:
+1. If a user request conflicts with these documents, stop and ask before proceeding.
+2. Do not improvise copy. All hero, project, and section copy is decided in `docs/decisions/`.
+3. Do not deviate from a decision document's spec without explicit user approval.
+4. If a decision document is ambiguous on a layout detail, ask before guessing.
+5. Decision documents are append-only in spirit — never edit `docs/decisions/001-*.md` after it ships unless the user explicitly approves a revision (and even then, prefer creating a new numbered decision that supersedes it).
+
+Strategy and copy decisions are made in the Claude.ai Project, not here. Your job is implementation.
+
 # CLAUDE.md
 
 Notes for Claude Code working on this repo. Read `AGENTS.md` first for the non-negotiable rules; this file is the tighter operational guide.
@@ -23,8 +39,8 @@ Notes for Claude Code working on this repo. Read `AGENTS.md` first for the non-n
 
 ## Dependencies
 
-- Allowed: `motion`, `lucide-react`, `clsx`, `tailwind-merge`, Tailwind v4, Next.js, React 19, TypeScript.
-- **Forbidden without explicit approval:** `three`, `gsap`, `lenis`, `framer-motion` (we use `motion`), `next-themes`. If you think you need a new dep, stop and ask.
+- Allowed: `motion`, `lucide-react`, `clsx`, `tailwind-merge`, `gsap` (approved — used for hero pin and parallax scrubs only, per PLAN.md Phase 2), Tailwind v4, Next.js, React 19, TypeScript.
+- **Forbidden without explicit approval:** `three`, `lenis`, `framer-motion` (we use `motion`), `next-themes`. If you think you need a new dep, stop and ask.
 
 ## TypeScript
 
@@ -44,38 +60,9 @@ Notes for Claude Code working on this repo. Read `AGENTS.md` first for the non-n
 
 ## Design tokens
 
-The site is **warm light mode** (bone palette). The full token set lives in `src/app/globals.css` under `:root`. Reference values:
+Dark palette defined in docs/design-tokens.md (Phase 1, locked May 13). This file supersedes the old warm palette for the redesign-scrollytelling branch.
 
-| Token                  | Hex       | Use                                            |
-| ---------------------- | --------- | ---------------------------------------------- |
-| `--bg-base`            | `#faf7f0` | Body background                                |
-| `--bg-soft`            | `#ebe4d3` | Recessed panels, badges, chip bg, footer       |
-| `--border-soft`        | `#d9cfb5` | Default card / chip borders                    |
-| `--border-strong`      | `#b8a989` | Hover borders, code keyword in dark window     |
-| `--text-primary`       | `#1c1a17` | Primary text, headings, primary button bg      |
-| `--text-muted`         | `#5a544c` | Secondary text (AA-compliant for small text)   |
-| `--text-faint`         | `#8a8278` | Decorative icons / large-text only             |
-| `--accent-bronze`      | `#6b5638` | Eyebrows, badges, default icon color           |
-| `--accent-bronze-deep` | `#4a3a26` | Hover state for bronze                         |
-| `--accent-amber`       | `#c4985a` | Code string accent, alternating step icons     |
-| `--code-bg`            | `#1a1815` | Hero code window background (kept dark)        |
-| `--code-fg`            | `#e8e0d0` | Code window text                               |
-| `--code-border`        | `#2a2620` | Code window borders                            |
-
-### Typography
-
-- **Body / nav / buttons / chips:** Geist Sans (`--font-geist-sans`), weight 400–600.
-- **h1 hero "Pavan Rathod":** Instrument Serif (`font-serif`), **italic**, weight 400, `clamp(56px, 9vw, 120px)`, `letter-spacing: -0.01em`, `line-height: 1`.
-- **h2 section headings:** Instrument Serif (`font-serif`), **roman**, weight 400, `clamp(36px, 5vw, 64px)`, `letter-spacing: -0.015em`.
-- **h3 and smaller:** Geist Sans, weight 500–600.
-- **Code window text:** Geist Mono (`font-mono`), only inside the hero code window.
-
-### Rules
-
-- Use the tokens above, not arbitrary hex. New colors require a token + a reason.
-- The **hero code window stays dark on purpose** — it's the only dark surface besides the contact CTA panel.
-- The contact CTA panel inverts to dark (`#1c1a17` + `#faf7f0` text) to create rhythm against the bone page.
-- Don't reintroduce cyan/violet glow effects — the dark-mode design has been replaced.
+Typography and visual rules for the redesign-scrollytelling branch are defined in docs/design-tokens.md (Phase 1, locked May 13). This file supersedes any prior typography or visual rules in CLAUDE.md.
 
 ## Before finishing a task
 
