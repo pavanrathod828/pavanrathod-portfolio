@@ -73,6 +73,20 @@ export const siteData = {
   hero: {
     headline: "Pavan Rathod",
   },
+  heroIntro: {
+    eyebrow: "PAVAN RATHOD · CS + FINANCE · CSULB '28 · LOS ANGELES",
+    headlineBefore: "I build ",
+    headlineHighlight: "retrieval",
+    headlineAfter: " and attribution systems for D2C brands.",
+    subhead:
+      "Software Engineer Intern at HypeOn AI. Open to Summer 2027 SWE internships. Applying to MS CS (AI/ML) for Fall 2028.",
+    primaryCta: { label: "See the work", href: "/work/hypeon" },
+    secondaryCta: {
+      label: "View on GitHub",
+      href: "https://github.com/pavanrathod828",
+    },
+    photoAlt: "Photo placeholder — headshot pending",
+  },
   navItems: [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
