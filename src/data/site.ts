@@ -67,12 +67,6 @@ export const siteData = {
   resumeUrl: "/resume.pdf",
   tagline:
     "Computer Science student at CSULB building full-stack web products — booking platforms, AI tools, and modern web experiences.",
-  heroEyebrow: "Software Engineering · CSULB '28 · Los Angeles",
-  heroSubTagline:
-    "Seeking Software Engineering internships for Summer 2026 and 2027. Currently building a booking platform for an LA-area hotel.",
-  hero: {
-    headline: "Pavan Rathod",
-  },
   heroIntro: {
     eyebrow: "PAVAN RATHOD · CS + FINANCE · CSULB '28 · LOS ANGELES",
     headlineBefore: "I build ",

@@ -176,22 +176,6 @@ body {
   will-change: transform;
 }
 
-/* Static fallback: when no animation will run, the pin stage collapses
-   so the layout doesn't reserve 150vh of empty space. Word visibility
-   is handled by the default .word-inner rule above (visible by default;
-   GSAP hides + reveals just-in-time as a progressive enhancement). */
-@media (max-width: 1023px), (prefers-reduced-motion: reduce) {
-  #hero-stage {
-    height: auto !important;
-  }
-  #hero-pin {
-    height: auto !important;
-  }
-  #hero-content {
-    min-height: 100vh;
-  }
-}
-
 /* ─────────────────────────────────────────────────────────────
    Phase 4 — About ("ABOUT / NOTE 01")
    ───────────────────────────────────────────────────────────── */
