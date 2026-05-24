@@ -381,6 +381,30 @@ body {
   text-decoration-color: var(--teal);
 }
 
+.hypeon-visual-wrap {
+  width: 100%;
+  max-width: 600px;
+  align-self: center;
+}
+
+.hypeon-visual {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ml-visual-wrap {
+  width: 100%;
+  max-width: 640px;
+  align-self: center;
+}
+
+.ml-visual {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .hypeon-cta {
   align-self: flex-start;
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;

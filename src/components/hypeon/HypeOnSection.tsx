@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useSectionReveal } from "@/lib/useSectionReveal";
+import HypeOnVisual from "@/components/hypeon/HypeOnVisual";
 
 export default function HypeOnSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -35,6 +36,10 @@ export default function HypeOnSection() {
         &apos;s products. A deeper writeup of one system is in progress — see
         the case study link below.
       </p>
+
+      <div className="hypeon-visual-wrap" data-reveal>
+        <HypeOnVisual />
+      </div>
 
       <a href="/work/hypeon" className="hypeon-cta" data-reveal>
         Read the case study →

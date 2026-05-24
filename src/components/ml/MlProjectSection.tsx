@@ -4,6 +4,7 @@
 
 import { useRef } from "react";
 import { useSectionReveal } from "@/lib/useSectionReveal";
+import RagPipelineVisual from "@/components/ml/RagPipelineVisual";
 
 export default function MlProjectSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -28,6 +29,10 @@ export default function MlProjectSection() {
         A small, public retrieval system over an open product-review corpus,
         scored against an eval harness written before any retriever code lands.
       </p>
+
+      <div className="ml-visual-wrap" data-reveal>
+        <RagPipelineVisual />
+      </div>
 
       <a href="#" className="ml-link" data-reveal>
         Repo →
