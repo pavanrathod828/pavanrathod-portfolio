@@ -19,7 +19,7 @@ export default function SkywaysSection() {
         src="/skyways-thumb.png"
         alt="Skyways Hotel booking page"
         width={200}
-        height={137}
+        height={124}
         sizes="(min-width: 768px) 200px, 100vw"
         priority={false}
         className="h-auto w-full self-center rounded-[2px] border border-[color:var(--line)] md:w-[200px]"

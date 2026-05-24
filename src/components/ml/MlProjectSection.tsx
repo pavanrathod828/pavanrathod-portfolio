@@ -3,11 +3,21 @@
 // TODO(week-4): replace stub with real project links + metrics
 
 import { useRef } from "react";
+import type { ReactNode } from "react";
+import { motion, useInView, useReducedMotion } from "motion/react";
 import { useSectionReveal } from "@/lib/useSectionReveal";
-import RagPipelineVisual from "@/components/ml/RagPipelineVisual";
 
-export default function MlProjectSection() {
+interface MlProjectSectionProps {
+  codeBlock?: ReactNode;
+}
+
+export default function MlProjectSection({ codeBlock }: MlProjectSectionProps) {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const visualRef = useRef<HTMLDivElement | null>(null);
+  const inView = useInView(visualRef, { once: true, amount: 0.3 });
+  const reduce = useReducedMotion();
+  const active = reduce || inView;
+
   useSectionReveal(sectionRef);
 
   return (
@@ -30,9 +40,17 @@ export default function MlProjectSection() {
         scored against an eval harness written before any retriever code lands.
       </p>
 
-      <div className="ml-visual-wrap" data-reveal>
-        <RagPipelineVisual />
-      </div>
+      {codeBlock && (
+        <motion.div
+          ref={visualRef}
+          className="ml-code-wrap"
+          initial={reduce ? false : { opacity: 0, y: 8 }}
+          animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+          transition={reduce ? { duration: 0 } : { duration: 0.5, ease: "easeOut" as const }}
+        >
+          {codeBlock}
+        </motion.div>
+      )}
 
       <a href="#" className="ml-link" data-reveal>
         Repo →
