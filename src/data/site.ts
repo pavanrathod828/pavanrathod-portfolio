@@ -1,12 +1,21 @@
 /**
- * Verified content model for pavanrathod.com.
+ * DEPRECATED in place — do not add new imports from this file.
  *
- * Conventions:
- * - User-visible copy lives here and is consumed by section components.
- *   Components should not hardcode strings.
- * - `isPlaceholder` flags are kept on the types for future drafts, but every
- *   record in this file is real, verified content (so they are all `false`).
- * - See docs/CONTENT_INTAKE.md for how to update content safely.
+ * As of 2026-05-24, the only field still consumed by a rendered component
+ * is `siteData.heroIntro` (used by `src/components/hero/Hero.tsx`). Every
+ * other field on this object — `name`, `email`, `navItems`, `socialLinks`,
+ * `about`, `projects`, `projectsSection`, `skills`, `skillsSection`,
+ * `contact`, `footerText`, and the related `*Group` / `*Item` / `Project`
+ * / `ProjectStatus` / `SocialLink` / `AboutFeature` / `ContactButton`
+ * types — is kept here ONLY so the dead `src/components/sections/*` and
+ * `src/components/layout/{Header,MobileNav,Footer}.tsx` files continue
+ * to type-check. Those files are commented-out Phase 8+ TODOs in
+ * `src/app/page.tsx`; they are not rendered.
+ *
+ * A follow-up commit (scoped to dead-code removal) will delete those
+ * zombie consumers and prune this file down to just `heroIntro`.
+ * Until then, DO NOT add new fields or new active consumers here —
+ * keep new component data inline in the component or in a sibling file.
  */
 
 export type NavItem = {

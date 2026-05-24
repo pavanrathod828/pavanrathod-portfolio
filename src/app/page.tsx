@@ -32,7 +32,7 @@ export default function Home() {
       <main id="main" className="relative">
         <Hero />
         <HeroAbout />
-        <NowSection />
+        <NowSection hasResume={hasResume} />
         <HypeOnSection />
         <MlProjectSection />
         <SkywaysSection />
